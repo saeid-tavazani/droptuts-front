@@ -1,3 +1,3 @@
 require("dotenv").config();
-const startApplication = require("./app");
-startApplication();
+const bootApplication = require("./app");
+bootApplication(process.env.APP_PORT);

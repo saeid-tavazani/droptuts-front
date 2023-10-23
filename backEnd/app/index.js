@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-module.exports = () => {
-  const port = process.env.APP_PORT;
+
+module.exports = (port) => {
   app.listen(port, () => {
-    console.log("app is running");
+    console.log(`app is running ${port}`);
   });
 };
