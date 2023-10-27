@@ -5,7 +5,8 @@ import { RouterProvider } from "react-router-dom";
 import Router from "./router/Router";
 import store from "./store/reducer";
 import("preline");
-import("./assets/css/index.css");
+import("./assets/css/main.css");
+import("./assets/Font/font.woff");
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

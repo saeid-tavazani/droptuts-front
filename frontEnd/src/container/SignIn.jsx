@@ -18,7 +18,6 @@ export default function SignIn() {
 
   const loginUser = (event) => {
     event.preventDefault();
-    console.log(inputRemember, inputPassword, inputEmail);
     dispatch(userInfo({ userName: inputEmail, password: inputPassword }));
     navigate("/");
   };
@@ -38,7 +37,7 @@ export default function SignIn() {
               <Input
                 type="email"
                 aria-describedby="email-error"
-                className="mt-2"
+                className="mt-2 w-full"
                 onChange={() => setInputEmail(event.target.value)}
                 required
               />
