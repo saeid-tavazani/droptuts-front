@@ -1,11 +1,11 @@
 var passwordHash = require("password-hash");
 const TokenService = require("../services/TokenService");
 const { selectAllUser } = require("../models/userModels");
+
 exports.newSession = (req, res, next) => {
   try {
     const { email, password } = req.body;
-    var hashedPassword = passwordHash.generate("irs.8203");
-    console.log(hashedPassword);
+
     if (
       email != undefined &&
       password != undefined &&
@@ -19,6 +19,7 @@ exports.newSession = (req, res, next) => {
             passwordHash.verify(password, user[0].password) &&
             passwordHash.isHashed(password) == false
           ) {
+            delete user[0].password;
             res.send({
               data: user[0],
               success: true,
