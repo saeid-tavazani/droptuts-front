@@ -1,10 +1,13 @@
-import Button from "../components/UI/Button";
-import Input from "../components/UI/Input";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
+import axios from "../assets/axios/Axios";
 import { userInfo } from "../store/userSlice";
 import Loding from "../components/UI/Loding";
-import { Outlet, useNavigate } from "react-router-dom";
+import Button from "../components/UI/Button";
+import Input from "../components/UI/Input";
 
 export default function SignIn() {
   const [inputEmail, setInputEmail] = useState(null);
@@ -13,17 +16,52 @@ export default function SignIn() {
   const [loding, setLoding] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-
   const loginUser = (event) => {
     event.preventDefault();
-    dispatch(userInfo({ userName: inputEmail, password: inputPassword }));
-    navigate("/");
+    if (inputEmail.trim() != "" && inputPassword.trim() != "") {
+      axios
+        .post("/session", {
+          email: inputEmail.trim(),
+          password: inputPassword.trim(),
+        })
+        .then((res) => {
+          console.log(res.data);
+
+          if (res.data.success) {
+            dispatch(userInfo(res.data.data));
+            navigate("/");
+          } else {
+            setError(true);
+            toast.error("رمز عبور و یا ایمیل اشتباه است", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
+        });
+    }
   };
 
   return (
     <section className="w-full h-screen flex items-center justify-center">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="bg-white border border-gray-200 rounded-xl shadow-sm w-96 p-10">
         <div className="text-center">
           <h1 className="block text-2xl font-bold text-gray-800">
@@ -37,7 +75,9 @@ export default function SignIn() {
               <Input
                 type="email"
                 aria-describedby="email-error"
-                className="mt-2 w-full"
+                className={`mt-2 w-full ${
+                  error && "focus:border-red-500 focus:ring-red-500"
+                }`}
                 onChange={() => setInputEmail(event.target.value)}
                 required
               />

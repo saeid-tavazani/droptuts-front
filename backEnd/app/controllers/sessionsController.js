@@ -1,30 +1,30 @@
+var passwordHash = require("password-hash");
 const TokenService = require("../services/TokenService");
 const { selectAllUser } = require("../models/userModels");
 exports.newSession = (req, res, next) => {
   try {
     const { email, password } = req.body;
-
+    var hashedPassword = passwordHash.generate("irs.8203");
+    console.log(hashedPassword);
     if (
       email != undefined &&
       password != undefined &&
       email != "" &&
       password != ""
     ) {
-      selectAllUser([email, password])
+      selectAllUser([email])
         .then((user) => {
-          if (user.length) {
+          if (
+            user.length &&
+            passwordHash.verify(password, user[0].password) &&
+            passwordHash.isHashed(password) == false
+          ) {
             res.send({
               data: user[0],
-              success: false,
+              success: true,
               code: 200,
               message: "success",
-              token: TokenService.sing(
-                {
-                  exp: Math.floor(Date.now() / 1000) + 2 * 24 * 60 * 60 * 1000,
-                  data: user[0],
-                },
-                "secret"
-              ),
+              token: TokenService.sing(user[0]),
             });
           } else {
             res.send({

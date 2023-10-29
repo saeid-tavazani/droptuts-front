@@ -1,4 +1,3 @@
-const userRouter = require("./users");
 const sessionRouter = require("./sessions");
 const auth = require("../middlewares/auth");
 
