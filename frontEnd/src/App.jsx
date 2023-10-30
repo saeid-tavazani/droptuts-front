@@ -5,22 +5,34 @@ import { useEffect, useRef } from "react";
 import Aside from "./components/App/Aside";
 import Header from "./components/App/Header";
 import { Editor } from "@tinymce/tinymce-react";
+import Cookies from "js-cookie";
+import axios from "./assets/axios/Axios";
+
 export default function App() {
   const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-    if (user == null) {
+    const cookie = Cookies.get("tokenPanelAdmin");
+    if (cookie) {
+      axios
+        .get("/session/verify", { headers: { authorization: cookie } })
+        .then((response) => {
+          if (response.data.success) {
+            dispatch(userInfo(response.data.data));
+          } else {
+            navigate("/signin");
+          }
+        })
+        .catch((error) => {
+          navigate("/signin");
+          Cookies.remove("tokenPanelAdmin");
+        });
+    } else {
       navigate("/signin");
     }
   }, []);
 
-  const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
   return (
     user && (
       <>
@@ -83,43 +95,7 @@ export default function App() {
               </ol>
             </div>
           </div>
-          {/* <Editor
-            apiKey="your-api-key"
-            onInit={(evt, editor) => (editorRef.current = editor)}
-            initialValue="<p>This is the initial content of the editor.</p>"
-            init={{
-              height: 500,
-              menubar: false,
-              plugins: [
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-              ],
-              toolbar:
-                "undo redo | blocks | " +
-                "bold italic forecolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-            }}
-          /> */}
-          {/* <button onClick={log}>Log editor content</button> */}
+
           <Outlet />
         </section>
       </>

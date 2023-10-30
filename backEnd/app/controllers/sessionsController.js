@@ -36,7 +36,7 @@ exports.newSession = (req, res, next) => {
           }
         })
         .catch((err) => {
-          res.send({ code: 501 });
+          res.send({ code: 501, success: false });
         });
     } else {
       res.send({
