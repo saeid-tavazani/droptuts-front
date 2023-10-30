@@ -3,7 +3,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import { SignIn } from "../container/container";
+import { SignIn, LogOut } from "../container/container";
 import App from "../App";
 
 const Router = createBrowserRouter(
@@ -13,6 +13,7 @@ const Router = createBrowserRouter(
         <Route path="user" element={<p>user</p>} />
       </Route>
       <Route path="signin" element={<SignIn />} />
+      <Route path="logout" element={<LogOut />} />
     </>
   )
 );

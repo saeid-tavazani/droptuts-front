@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Cookies from "js-cookie";
 import jsonData from "../assets/jsonData.json";
@@ -36,9 +36,6 @@ export default function SignIn() {
                 expires: jsonData.expiresDate,
               });
             }
-            console.log("====================================");
-            console.log(res.data);
-            console.log("====================================");
             navigate("/");
           } else {
             setError(true);

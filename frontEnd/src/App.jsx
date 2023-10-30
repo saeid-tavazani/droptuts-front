@@ -7,7 +7,6 @@ import Header from "./components/App/Header";
 import { Editor } from "@tinymce/tinymce-react";
 import Cookies from "js-cookie";
 import axios from "./assets/axios/Axios";
-import Navigations from "./components/App/Navigations";
 import jsonData from "./assets/jsonData.json";
 
 export default function App() {
@@ -20,9 +19,6 @@ export default function App() {
       axios
         .get("/session/verify", { headers: { authorization: cookie } })
         .then((response) => {
-          console.log("====================================");
-          console.log(response.data);
-          console.log("====================================");
           if (response.data.success) {
             dispatch(userInfo(response.data.data));
           } else {
@@ -43,8 +39,7 @@ export default function App() {
       <>
         <Aside />
         <section className="lg:w-[calc(100%-256px)] flex flex-col w-full ">
-          <Header />
-          <Navigations />
+          <Header siteName={jsonData.webSiteName} user={user} />
           <Outlet />
         </section>
       </>

@@ -17,7 +17,8 @@ exports.newSession = (req, res, next) => {
           if (
             user.length &&
             passwordHash.verify(password, user[0].password) &&
-            passwordHash.isHashed(password) == false
+            passwordHash.isHashed(password) == false &&
+            user[0].status == 1
           ) {
             delete user[0].password;
             res.send({

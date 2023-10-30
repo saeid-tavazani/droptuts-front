@@ -1,3 +1,3 @@
 import SignIn from "./SignIn";
-
-export { SignIn };
+import LogOut from "./LogOut";
+export { SignIn, LogOut };
