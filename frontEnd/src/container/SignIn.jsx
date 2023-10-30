@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Cookies from "js-cookie";
+import jsonData from "../assets/jsonData.json";
 
 import axios from "../assets/axios/Axios";
 import { userInfo } from "../store/userSlice";
@@ -31,8 +32,13 @@ export default function SignIn() {
           if (res.data.success) {
             dispatch(userInfo(res.data.data));
             if (inputRemember) {
-              Cookies.set("tokenPanelAdmin", res.data.token, { expires: 2 });
+              Cookies.set(jsonData.cookieTokenName, res.data.token, {
+                expires: jsonData.expiresDate,
+              });
             }
+            console.log("====================================");
+            console.log(res.data);
+            console.log("====================================");
             navigate("/");
           } else {
             setError(true);
