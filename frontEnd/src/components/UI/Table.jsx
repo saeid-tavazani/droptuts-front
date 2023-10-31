@@ -1,15 +1,12 @@
 import TD from "./TD";
+import moment from "moment-jalaali";
 
 export default function Table({ data }) {
-  const thead = [
-    "id",
-    "name",
-    "email",
-    "role",
-    "picture",
-    "production date",
-    "ACTIONS",
-  ];
+  const thead = ["id", "name", "email", "role", "picture", "date", "ACTION"];
+  const convertPersia = (date) => {
+    const d = new Date(date);
+    return new Intl.DateTimeFormat("fa-IR").format(d);
+  };
 
   return (
     <table className="min-w-full divide-y divide-gray-200 ">
@@ -44,7 +41,7 @@ export default function Table({ data }) {
                 item.picture
               )}
             </TD>
-            <TD>{item.create_at}</TD>
+            <TD>{convertPersia(item.create_at)}</TD>
             <TD>DELETE</TD>
           </tr>
         ))}

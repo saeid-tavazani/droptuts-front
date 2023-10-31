@@ -12,6 +12,7 @@ export default function Users() {
   const cookie = Cookies.get(jsonData.cookieTokenName);
   const users = useSelector((state) => state.users.value);
   const dispatch = useDispatch();
+
   //   dispatch(usersInfo(response.data.data));
   useEffect(() => {
     axios
