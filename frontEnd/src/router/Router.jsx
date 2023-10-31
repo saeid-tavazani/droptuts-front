@@ -3,14 +3,14 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import { SignIn, LogOut } from "../container/container";
+import { SignIn, LogOut, Users } from "../container/container";
 import App from "../App";
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<App />}>
-        <Route path="user" element={<p>user</p>} />
+        <Route path="users" element={<Users />} />
       </Route>
       <Route path="signin" element={<SignIn />} />
       <Route path="logout" element={<LogOut />} />

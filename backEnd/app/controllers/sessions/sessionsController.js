@@ -1,6 +1,6 @@
 var passwordHash = require("password-hash");
-const TokenService = require("../services/TokenService");
-const { selectAllUser } = require("../models/userModels");
+const TokenService = require("../../services/TokenService");
+const { selectUser } = require("../../models/userModels");
 
 exports.newSession = (req, res, next) => {
   try {
@@ -12,7 +12,7 @@ exports.newSession = (req, res, next) => {
       email != "" &&
       password != ""
     ) {
-      selectAllUser([email])
+      selectUser([email])
         .then((user) => {
           if (
             user.length &&

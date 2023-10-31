@@ -1,9 +1,9 @@
-const TokenService = require("../services/TokenService");
-const { selectAllUser } = require("../models/userModels");
+const TokenService = require("../../services/TokenService");
+const { selectUser } = require("../../models/userModels");
 
 exports.verifyToken = (req, res, next) => {
   const data = TokenService.decode(req.headers.authorization);
-  selectAllUser(data.email).then((user) => {
+  selectUser(data.email).then((user) => {
     if (user[0].status == 1) {
       delete user[0].password;
       res.send({ data: user[0], success: true, code: 200, message: "success" });
