@@ -1,6 +1,7 @@
 import TD from "./TD";
-import moment from "moment-jalaali";
-
+// import moment from "moment-jalaali";
+import Button from "./ButtonText";
+import { BiSolidEdit } from "react-icons/bi";
 export default function Table({ data }) {
   const thead = ["id", "name", "email", "role", "picture", "date", "ACTION"];
   const convertPersia = (date) => {
@@ -42,7 +43,14 @@ export default function Table({ data }) {
               )}
             </TD>
             <TD>{convertPersia(item.create_at)}</TD>
-            <TD>DELETE</TD>
+            <TD>
+              <Button
+                type="button"
+                data-hs-overlay="#hs-vertically-centered-modal"
+              >
+                {<BiSolidEdit size={25} />}
+              </Button>
+            </TD>
           </tr>
         ))}
       </tbody>
