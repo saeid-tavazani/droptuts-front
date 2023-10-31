@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { BiLogOut } from "react-icons/bi";
+import { BiLogOut, BiUserCircle } from "react-icons/bi";
 import { FcMenu } from "react-icons/fc";
-
 export default function Header({ siteName, user }) {
   const data = [
     {
@@ -40,11 +39,15 @@ export default function Header({ siteName, user }) {
                 type="button"
                 className="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.375rem] w-[2.375rem] rounded-full font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-xs      "
               >
-                <img
-                  className="inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white "
-                  src={user.picture}
-                  alt={user.full_name}
-                />
+                {user.picture != "NULL" ? (
+                  <img
+                    className="inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white "
+                    src={user.picture}
+                    alt={user.full_name}
+                  />
+                ) : (
+                  <BiUserCircle size={50} />
+                )}
               </button>
 
               <div
