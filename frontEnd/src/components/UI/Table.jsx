@@ -28,7 +28,7 @@ export default function Table({ data }) {
       </thead>
       <tbody className="divide-y divide-gray-200 ">
         {data.map((item) => (
-          <tr key={item.id}>
+          <tr key={item.id} className={item.status == 0 ? "opacity-75" : ""}>
             <TD className="font-bold">{item.id}</TD>
             <TD>{item.full_name}</TD>
             <TD>{item.email}</TD>

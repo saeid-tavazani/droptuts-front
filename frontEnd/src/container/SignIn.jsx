@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Cookies from "js-cookie";
 import jsonData from "../assets/jsonData.json";
-
 import axios from "../assets/axios/Axios";
 import { userInfo } from "../store/userSlice";
 import Loding from "../components/UI/Loding";
@@ -19,6 +18,13 @@ export default function SignIn() {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
+  const cookie = Cookies.get(jsonData.cookieTokenName);
+  useEffect(() => {
+    if (cookie || user) {
+      navigate("/");
+    }
+  }, []);
 
   const loginUser = (event) => {
     event.preventDefault();
