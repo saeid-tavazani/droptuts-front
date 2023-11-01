@@ -20,9 +20,6 @@ const changeStatus = async (value) => {
     "UPDATE `users` SET `status`=? WHERE id=?",
     value
   );
-  console.log("====================================");
-  console.log(rows);
-  console.log("====================================");
   return rows;
 };
 

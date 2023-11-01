@@ -38,9 +38,9 @@ export default function Table({ data }) {
         }
       });
   };
-  const changeStatus = (id, value) => {
+  const changeStatus = (id, status) => {
     axios
-      .put(`/users`, { id, value }, { headers: { authorization: token } })
+      .put(`/users`, { id, status }, { headers: { authorization: token } })
       .then((response) => {
         if (response.data.success) {
           dispatch(usersInfo(response.data.data));

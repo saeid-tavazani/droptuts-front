@@ -5,7 +5,6 @@ const { selectUser } = require("../../models/userModels");
 exports.newSession = (req, res, next) => {
   try {
     const { email, password } = req.body;
-
     if (
       email != undefined &&
       password != undefined &&
