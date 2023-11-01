@@ -15,7 +15,6 @@ export default function Table({ data }) {
   console.log("====================================");
   console.log(token);
   console.log("====================================");
-  // const user = useSelector((state) => state.editUser.value);
   const dispatch = useDispatch();
 
   const deleteUser = (id) => {
@@ -58,8 +57,6 @@ export default function Table({ data }) {
         }
       });
   };
-
-  // axios.delete("/users");
 
   return (
     <>

@@ -12,6 +12,5 @@ export const token = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { setToken } = token.actions;
 export default token.reducer;

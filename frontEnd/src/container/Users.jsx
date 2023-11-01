@@ -1,13 +1,9 @@
-import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import jsonData from "../assets/jsonData.json";
 import { usersInfo } from "../store/usersSlice";
 import axios from "../assets/axios/Axios";
 import LodingPage from "../components/UI/LodingPage";
 import Table from "../components/users/Table";
-
-// import ModalEditUser from "../components/users/ModalEditUser";
 
 export default function Users() {
   const users = useSelector((state) => state.users.value);
