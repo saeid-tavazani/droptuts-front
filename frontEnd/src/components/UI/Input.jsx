@@ -1,9 +1,4 @@
-export default function Input({
-  type,
-  className = "w-full",
-  ref = null,
-  ...other
-}) {
+export default function Input({ type, className = "w-full", ...other }) {
   return (
     <input
       type={type}

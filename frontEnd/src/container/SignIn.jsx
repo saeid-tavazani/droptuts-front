@@ -9,7 +9,7 @@ import { userInfo } from "../store/userSlice";
 import Loding from "../components/UI/Loding";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
-
+import { setToken } from "../store/token";
 export default function SignIn() {
   const [inputEmail, setInputEmail] = useState(null);
   const [inputPassword, setInputPassword] = useState(null);
@@ -37,6 +37,7 @@ export default function SignIn() {
         .then((res) => {
           if (res.data.success) {
             dispatch(userInfo(res.data.data));
+            dispatch(setToken(res.data.token));
             if (inputRemember) {
               Cookies.set(jsonData.cookieTokenName, res.data.token, {
                 expires: jsonData.expiresDate,

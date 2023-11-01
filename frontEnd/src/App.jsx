@@ -1,6 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userInfo } from "./store/userSlice";
+import { setToken } from "./store/token";
 import { useEffect, useRef } from "react";
 import Aside from "./components/App/Aside";
 import Header from "./components/App/Header";
@@ -12,6 +13,8 @@ import LodingPage from "./components/UI/LodingPage";
 
 export default function App() {
   const user = useSelector((state) => state.user.value);
+  const token = useSelector((state) => state.token.value);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -23,6 +26,10 @@ export default function App() {
           .then((response) => {
             if (response.data.success) {
               dispatch(userInfo(response.data.data));
+              dispatch(setToken(cookie));
+              console.log("====================================");
+              console.log(response);
+              console.log("====================================");
             } else {
               navigate("/signin");
             }
