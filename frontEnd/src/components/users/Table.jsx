@@ -6,7 +6,16 @@ import { usersInfo } from "../../store/usersSlice";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function Table({ data }) {
-  const thead = ["id", "name", "email", "role", "picture", "date", "ACTION"];
+  const thead = [
+    "id",
+    "name",
+    "email",
+    "role",
+    "picture",
+    "date",
+    "phone",
+    "ACTION",
+  ];
   const convertPersia = (date) => {
     const d = new Date(date);
     return new Intl.DateTimeFormat("fa-IR").format(d);
@@ -103,6 +112,7 @@ export default function Table({ data }) {
                 )}
               </TD>
               <TD>{convertPersia(item.create_at)}</TD>
+              <TD>{item.phone}</TD>
               <TD className="flex items-center gap-1">
                 {item.role != "admin" && (
                   <>

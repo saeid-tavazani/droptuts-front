@@ -7,7 +7,6 @@ const selectUser = async (value) => {
   );
   return rows;
 };
-
 const selectUserId = async (value) => {
   const [rows] = await connection.query(
     "SELECT * FROM `users` WHERE `id`=?",
@@ -15,7 +14,6 @@ const selectUserId = async (value) => {
   );
   return rows;
 };
-
 const selectAllUser = async () => {
   const [rows] = await connection.query("SELECT * FROM `users`");
   return rows;
@@ -31,15 +29,13 @@ const changeStatus = async (value) => {
   );
   return rows;
 };
-
-const updateUserP = async (value) => {
+const updateUserInfo = async (value) => {
   const [rows] = await connection.query(
-    "UPDATE `users` SET `picture`=? `phone`=? WHERE id=?",
+    "UPDATE `users` SET `picture`=? `phone`=? `email`=? WHERE id=?",
     value
   );
   return rows;
 };
-
 const updateUserPassword = async (value) => {
   const [rows] = await connection.query(
     "UPDATE `users` SET `password`=? WHERE id=?",
