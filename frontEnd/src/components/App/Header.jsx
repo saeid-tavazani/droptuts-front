@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import { BiLogOut, BiUserCircle } from "react-icons/bi";
 import { FcMenu } from "react-icons/fc";
+import { LiaUserEditSolid } from "react-icons/lia";
 export default function Header({ siteName, user }) {
   const data = [
     {
       text: "خروج",
       href: "logout",
       icon: <BiLogOut size={20} />,
+    },
+    {
+      text: "ویرایش حساب کاربری",
+      href: "editprofile",
+      icon: <LiaUserEditSolid size={20} />,
     },
   ];
 
@@ -59,6 +65,7 @@ export default function Header({ siteName, user }) {
                   <p className="text-sm font-medium text-gray-800 ">
                     {user.email}
                   </p>
+                  <p className="text-sm text-gray-500 ">{user.phone}</p>
                 </div>
                 <div className="mt-2 py-2 first:pt-0 last:pb-0">
                   {data.map((item, index) => (

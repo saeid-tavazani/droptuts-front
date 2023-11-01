@@ -12,9 +12,7 @@ export default function Table({ data }) {
     return new Intl.DateTimeFormat("fa-IR").format(d);
   };
   const token = useSelector((state) => state.token.value);
-  console.log("====================================");
-  console.log(token);
-  console.log("====================================");
+
   const dispatch = useDispatch();
 
   const deleteUser = (id) => {
