@@ -54,7 +54,7 @@ CREATE TABLE `users` (
   `full_name` varchar(80) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `role` enum('admin','author') NOT NULL DEFAULT 'author',
+  `role` enum('admin','author','user') NOT NULL DEFAULT 'author',
   `create_at` datetime NOT NULL DEFAULT current_timestamp(),
   `picture` varchar(255) DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT 1,

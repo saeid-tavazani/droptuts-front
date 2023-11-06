@@ -1,6 +1,6 @@
-var passwordHash = require("password-hash");
-const TokenService = require("../../services/TokenService");
-const { selectUser } = require("../../models/userModels");
+const TokenService = require("../services/TokenService");
+const { verifyPass } = require("../services/PasswordHash");
+const { selectUser } = require("../models/userModels");
 
 exports.newSession = (req, res, next) => {
   try {
@@ -15,8 +15,7 @@ exports.newSession = (req, res, next) => {
         .then((user) => {
           if (
             user.length &&
-            passwordHash.verify(password, user[0].password) &&
-            passwordHash.isHashed(password) == false &&
+            verifyPass(password, user[0].password) &&
             user[0].status == 1
           ) {
             delete user[0].password;
@@ -47,5 +46,31 @@ exports.newSession = (req, res, next) => {
     }
   } catch (error) {
     next(error);
+  }
+};
+
+exports.verifyToken = (req, res, next) => {
+  try {
+    const data = TokenService.decode(req.headers.authorization);
+    selectUser(data.email).then((user) => {
+      if (user[0].status == 1) {
+        delete user[0].password;
+        res.send({
+          data: user[0],
+          success: true,
+          code: 200,
+          message: "success",
+        });
+      } else {
+        return res.status(401).send({
+          status: "error",
+          code: 401,
+          message: "Inactive user",
+          success: false,
+        });
+      }
+    });
+  } catch (e) {
+    next();
   }
 };

@@ -1,10 +1,12 @@
 const express = require("express");
 
-const { users } = require("../controllers/users/getUsersPanel");
-const { deleteUsers } = require("../controllers/users/deleteUser");
-const { editStatus } = require("../controllers/users/changeStatus");
-const { updateUserInfo } = require("../controllers/users/updateInfo");
-const { updateUserPass } = require("../controllers/users/updateUserPass");
+const {
+  updateUserPass,
+  updateUserInfo,
+  editStatus,
+  deleteUsers,
+  users,
+} = require("../controllers/users");
 
 const router = express.Router();
 
