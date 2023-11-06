@@ -35,6 +35,9 @@ export default function SignIn() {
           password: inputPassword.trim(),
         })
         .then((res) => {
+          console.log("====================================");
+          console.log(res.data);
+          console.log("====================================");
           if (res.data.success) {
             dispatch(userInfo(res.data.data));
             dispatch(setToken(res.data.token));
