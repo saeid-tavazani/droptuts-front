@@ -6,12 +6,15 @@ export default function TableProducts({ data }) {
   };
   const thead = [
     "id",
-    "name",
-    "email",
-    "role",
-    "picture",
+    "title",
+    "description",
+    "author",
+    "Price",
+    "poster",
     "date",
-    "phone",
+    "update",
+    "discount",
+    "status",
     "ACTION",
   ];
   console.log("====================================");
@@ -36,8 +39,9 @@ export default function TableProducts({ data }) {
         {data.map((item) => (
           <tr key={item.id} className={item.active == 0 ? "opacity-75" : ""}>
             <TD className="font-bold">{item.id}</TD>
-            <TD>{item.title}</TD>
-            <TD>{item.description}</TD>
+            <TD>{item.title.substring(0, 30).concat(" ...")}</TD>
+            <TD>{item.description.substring(0, 35).concat(" ...")}</TD>
+            <TD>{item.full_name}</TD>
             <TD>{item.Price}</TD>
             <TD>
               {item.poster != "NULL" ? (
@@ -51,30 +55,16 @@ export default function TableProducts({ data }) {
               )}
             </TD>
             <TD>{convertPersia(item.create_at)}</TD>
-            <TD>{item.phone}</TD>
-            <TD className="flex items-center gap-1">
-              {/* {item.role != "admin" && (
-                <>
-                  <AiOutlineDelete
-                    cursor="pointer"
-                    onClick={() => deleteUser(item.id)}
-                    size={25}
-                  />
-                  {item.status ? (
-                    <AiFillUnlock
-                      cursor="pointer"
-                      onClick={() => changeStatus(item.id, item.status)}
-                      size={25}
-                    />
-                  ) : (
-                    <AiFillLock
-                      cursor="pointer"
-                      onClick={() => changeStatus(item.id, item.status)}
-                      size={25}
-                    />
-                  )}
-                </>
-              )} */}
+            <TD>{item.update_at ? convertPersia(item.update_at) : ""}</TD>
+            <TD>{item.discount}</TD>
+            <TD
+              className={
+                (item.status == "update" && "text-yellow-500") ||
+                (item.status == "end" && "text-red-500") ||
+                (item.status == "performing" && "text-green-500")
+              }
+            >
+              {item.status}
             </TD>
           </tr>
         ))}
