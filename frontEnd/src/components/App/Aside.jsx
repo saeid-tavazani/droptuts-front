@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
+import { BsShop } from "react-icons/bs";
 export default function Aside({ user }) {
   const data = [
     {
@@ -14,6 +15,12 @@ export default function Aside({ user }) {
       Text: "کاربران",
       icon: <FiUsers size={20} />,
       access: "admin",
+    },
+    {
+      href: "products",
+      Text: "محصولات",
+      icon: <BsShop size={20} />,
+      access: "*",
     },
   ];
 

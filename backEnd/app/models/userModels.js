@@ -16,7 +16,7 @@ const selectUserId = async (value) => {
 };
 const selectAllUser = async () => {
   const [rows] = await connection.query(
-    "SELECT * FROM `users` WHERE `is_deleted`=0"
+    "SELECT `id`, `full_name`, `email`, `password`, `role`, `create_at`, `picture`, `status`, `phone` FROM `users` WHERE `is_deleted`=0"
   );
   return rows;
 };

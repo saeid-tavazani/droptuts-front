@@ -10,7 +10,6 @@ export default function Users() {
   const token = useSelector((state) => state.token.value);
   const dispatch = useDispatch();
 
-  console.log(users);
   useEffect(() => {
     axios
       .get("/users", { headers: { authorization: token } })

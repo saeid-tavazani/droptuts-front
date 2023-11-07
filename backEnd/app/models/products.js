@@ -1,7 +1,9 @@
 const connection = require("../../database/mysql");
 
 const selectAll = async () => {
-  const [rows] = await connection.query("SELECT * FROM `products`");
+  const [rows] = await connection.query(
+    "SELECT products.* ,users.full_name FROM `products` INNER JOIN `users` ON products.author_id = users.id"
+  );
   return rows;
 };
 
@@ -14,7 +16,7 @@ const selectActive = async () => {
 
 const addProduct = async (value) => {
   const [rows] = await connection.query(
-    "INSERT INTO `products`( `title`, `description`, `Price`, `poster`, `active`, `author_id`, `headlines`,`discount` ,`time`) VALUES (?,?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO `products`( `title`, `description`, `Price`, `poster`, `active`, `author_id`, `headlines`,`discount`) VALUES (?,?,?,?,?,?,?,?,?)",
     value
   );
   return rows;
@@ -30,7 +32,7 @@ const softDeleteProduct = async (value) => {
 
 const updateProduct = async (value) => {
   const [rows] = await connection.query(
-    "UPDATE `products` SET `title`=?,`description`=?,`Price`=?,`poster`=?,`status`=?,`author_id`=?,`headlines`=?,`update_at`=?,`discount`=? `time`=? WHERE id=?",
+    "UPDATE `products` SET `title`=?,`description`=?,`Price`=?,`poster`=?,`status`=?,`author_id`=?,`headlines`=?,`update_at`=?,`discount`=? WHERE id=?",
     value
   );
   return rows;
@@ -38,4 +40,8 @@ const updateProduct = async (value) => {
 
 module.exports = {
   selectAll,
+  updateProduct,
+  softDeleteProduct,
+  addProduct,
+  selectActive,
 };

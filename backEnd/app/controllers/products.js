@@ -1,4 +1,4 @@
-const { selectAll } = require("../../models/products");
+const { selectAll, addProduct } = require("../models/products");
 exports.getProduct = (req, res, next) => {
   try {
     selectAll()
@@ -20,4 +20,25 @@ exports.getProduct = (req, res, next) => {
   } catch (e) {
     next();
   }
+};
+
+exports.addProduct = (req, res, next) => {
+  let { author_id, description, title } = req.body;
+  let body = req.body;
+  // poster,
+  // price,
+  // active,
+  // headlines,
+  // discount,
+
+  addProduct([
+    title,
+    description,
+    body.price ? body.price : "NULL",
+    body.poster ? body.poster : "NULL",
+    body.active ? body.active : "NULL",
+    author_id,
+    body.headlines ? body.headlines : "NULL",
+    body.discount ? body.discount : "NULL",
+  ]);
 };

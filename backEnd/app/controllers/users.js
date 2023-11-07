@@ -108,9 +108,6 @@ exports.deleteUsers = (req, res, next) => {
       .then((rows) => {
         if (rows.affectedRows) {
           selectAllUser().then((users) => {
-            users.map((user) => {
-              delete user.password;
-            });
             res.send({
               data: users,
               success: true,

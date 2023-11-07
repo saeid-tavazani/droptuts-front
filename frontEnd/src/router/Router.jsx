@@ -3,7 +3,13 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import { SignIn, LogOut, Users, EditProfile } from "../container/container";
+import {
+  SignIn,
+  LogOut,
+  Users,
+  EditProfile,
+  Products,
+} from "../container/container";
 import App from "../App";
 
 const Router = createBrowserRouter(
@@ -12,6 +18,7 @@ const Router = createBrowserRouter(
       <Route path="/" element={<App />}>
         <Route path="users" element={<Users />} />
         <Route path="editprofile" element={<EditProfile />} />
+        <Route path="products" element={<Products />} />
       </Route>
       <Route path="signin" element={<SignIn />} />
       <Route path="logout" element={<LogOut />} />
