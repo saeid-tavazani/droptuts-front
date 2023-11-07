@@ -19,7 +19,7 @@ const {
 const router = express.Router();
 
 router.get("/", users);
-router.delete("/:id", validator([idValidator().notEmpty()]), deleteUsers);
+router.put("/delete", validator([idValidator().notEmpty()]), deleteUsers);
 router.put(
   "/",
   validator([

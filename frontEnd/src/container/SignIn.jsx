@@ -28,16 +28,18 @@ export default function SignIn() {
 
   const loginUser = (event) => {
     event.preventDefault();
-    if (inputEmail.trim() != "" && inputPassword.trim() != "") {
+    if (
+      inputEmail.trim() != "" &&
+      inputPassword.trim() != "" &&
+      String(inputEmail.trim()).includes("@") &&
+      String(inputPassword.trim()).length >= 8
+    ) {
       axios
         .post("/session", {
           email: inputEmail.trim(),
           password: inputPassword.trim(),
         })
         .then((res) => {
-          console.log("====================================");
-          console.log(res.data);
-          console.log("====================================");
           if (res.data.success) {
             dispatch(userInfo(res.data.data));
             dispatch(setToken(res.data.token));
@@ -46,6 +48,16 @@ export default function SignIn() {
                 expires: jsonData.expiresDate,
               });
             }
+            toast.success("رمز با موفقیت تغییر یافت", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             navigate("/");
           } else {
             setError(true);
@@ -60,6 +72,19 @@ export default function SignIn() {
               theme: "light",
             });
           }
+        })
+        .catch((e) => {
+          setError(true);
+          toast.error("رمز عبور و یا ایمیل اشتباه است", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         });
     }
   };

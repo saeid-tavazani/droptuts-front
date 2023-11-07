@@ -38,7 +38,7 @@ const changeStatus = async (value) => {
 };
 const updateUserInfo = async (value) => {
   const [rows] = await connection.query(
-    "UPDATE `users` SET `picture`=? `phone`=? `email`=? WHERE id=?",
+    "UPDATE `users` SET `picture`=? ,`email`=? ,`phone`=? WHERE id=?",
     value
   );
   return rows;

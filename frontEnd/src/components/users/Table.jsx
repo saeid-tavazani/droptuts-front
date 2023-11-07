@@ -26,7 +26,7 @@ export default function Table({ data }) {
 
   const deleteUser = (id) => {
     axios
-      .delete(`/users/${id}`, { headers: { authorization: token } })
+      .put(`/users/delete`, { id }, { headers: { authorization: token } })
       .then((response) => {
         if (response.data.success) {
           dispatch(usersInfo(response.data.data));
@@ -48,6 +48,9 @@ export default function Table({ data }) {
     axios
       .put(`/users`, { id, status }, { headers: { authorization: token } })
       .then((response) => {
+        console.log("====================================");
+        console.log(response);
+        console.log("====================================");
         if (response.data.success) {
           dispatch(usersInfo(response.data.data));
         } else {

@@ -52,10 +52,9 @@ exports.updateUserPass = (req, res, next) => {
 exports.updateUserInfo = (req, res, next) => {
   try {
     const { phone, picture, email, id } = req.body;
-
-    updateUserInfo([picture, phone, email, id])
+    updateUserInfo([picture, email, phone, Number(id)])
       .then((rows) => {
-        if (rows.changedRows) {
+        if (rows.affectedRows) {
           res.send({ success: true, code: 200, message: "success" });
         } else {
           res.send({
@@ -70,7 +69,7 @@ exports.updateUserInfo = (req, res, next) => {
         res.send({
           status: "error",
           code: 401,
-          message: "password not valid",
+          message: "info not valid",
           success: false,
         });
       });
@@ -103,7 +102,7 @@ exports.users = (req, res, next) => {
 
 exports.deleteUsers = (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = req.body.id;
 
     deleteUser([id])
       .then((rows) => {
@@ -143,9 +142,10 @@ exports.deleteUsers = (req, res, next) => {
 exports.editStatus = (req, res, next) => {
   try {
     const { id, status } = req.body;
-    changeStatus([Number(!status), id])
+
+    changeStatus([status == 1 ? 0 : 1, id])
       .then((rows) => {
-        if (rows.changedRows) {
+        if (rows.affectedRows) {
           selectAllUser().then((users) => {
             users.map((user) => {
               delete user.password;
