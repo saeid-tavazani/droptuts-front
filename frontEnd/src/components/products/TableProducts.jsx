@@ -41,7 +41,7 @@ export default function TableProducts({ data }) {
             <TD className="font-bold">{item.id}</TD>
             <TD>{item.title.substring(0, 30).concat(" ...")}</TD>
             <TD>{item.description.substring(0, 35).concat(" ...")}</TD>
-            <TD>{item.full_name}</TD>
+            <TD>{item.author}</TD>
             <TD>{item.Price}</TD>
             <TD>
               {item.poster != "NULL" ? (

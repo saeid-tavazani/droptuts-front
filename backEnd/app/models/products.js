@@ -2,7 +2,7 @@ const connection = require("../../database/mysql");
 
 const selectAll = async () => {
   const [rows] = await connection.query(
-    "SELECT `products`.`id`, `products`.`title`, `products`.`description`, `products`.`Price`, `products`.`poster`, `products`.`status`, `products`.`active`, `products`.`headlines`, `products`.`create_at`, `products`.`update_at`, `products`.`discount` ,users.full_name FROM `products` INNER JOIN `users` ON products.author_id = users.id"
+    "SELECT `products`.`id`, `products`.`title`, `products`.`description`, `products`.`Price`, `products`.`poster`, `products`.`status`, `products`.`active`, `products`.`headlines`, `products`.`create_at`, `products`.`update_at`, `products`.`discount` ,users.full_name AS author FROM `products` INNER JOIN `users` ON products.author_id = users.id"
   );
   return rows;
 };
