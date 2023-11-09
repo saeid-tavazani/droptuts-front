@@ -57,6 +57,7 @@ export default function Table({ data, titels, keys, actions = null }) {
                 {createView(keysValues.type, item[keysValues.value])}
               </TD>
             ))}
+            {actions ? <TD>{actions(item)}</TD> : ""}
           </tr>
         ))}
       </tbody>
