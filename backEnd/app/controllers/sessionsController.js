@@ -57,7 +57,7 @@ exports.verifyToken = (req, res, next) => {
         });
       }
     });
-  } catch (e) {
-    next();
+  } catch (error) {
+    next(error);
   }
 };

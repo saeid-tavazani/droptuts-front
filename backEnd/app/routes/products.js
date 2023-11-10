@@ -1,7 +1,5 @@
 const express = require("express");
-// const validator = require("../middlewares/validator");
-// const { emailValidator } = require("../services/ValidatorService");
-const { getProduct } = require("../controllers/products");
+const { getProduct } = require("../controllers/productsController");
 
 const router = express.Router();
 

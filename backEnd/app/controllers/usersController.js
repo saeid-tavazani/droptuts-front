@@ -6,26 +6,28 @@ const {
   deleteUser,
   changeStatus,
   addUser,
+  newUser,
 } = require("../models/userModels");
-
 const { verifyPass, generateHashPss } = require("../services/PasswordHash");
+const {
+  successNot,
+  errorNot,
+  notEdited,
+  success,
+  errorRequest,
+} = require("../services/ResponseStatusCodes");
 
 exports.updateUserPass = (req, res, next) => {
   try {
     const { currentPassword, password, id } = req.body;
-
     selectUserId([id])
       .then((user) => {
         if (verifyPass(currentPassword, user[0].password)) {
           updateUserPassword([generateHashPss(password), id]).then((rows) => {
             if (rows.changedRows) {
-              res.send({ success: true, code: 200, message: "success" });
+              res.send(successNot);
             } else {
-              res.send({
-                success: false,
-                code: 404,
-                message: "user not found!",
-              });
+              res.send(errorNot);
             }
           });
         } else {
@@ -38,15 +40,10 @@ exports.updateUserPass = (req, res, next) => {
         }
       })
       .catch((error) => {
-        res.send({
-          status: "error",
-          code: 401,
-          message: "error ?!",
-          success: false,
-        });
+        res.send(notEdited);
       });
-  } catch (e) {
-    next();
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -58,24 +55,14 @@ exports.updateUserInfo = (req, res, next) => {
         if (rows.affectedRows) {
           res.send({ success: true, code: 200, message: "success" });
         } else {
-          res.send({
-            success: false,
-            code: 404,
-            message: "user not found!",
-          });
+          res.send(notEdited);
         }
       })
       .catch((err) => {
-        console.log(err);
-        res.send({
-          status: "error",
-          code: 401,
-          message: "info not valid",
-          success: false,
-        });
+        res.send(errorRequest);
       });
-  } catch (e) {
-    next();
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -83,54 +70,37 @@ exports.users = (req, res, next) => {
   try {
     selectAllUser()
       .then((users) => {
-        res.send({ data: users, success: true, code: 200, message: "success" });
+        res.send({ data: users, ...success });
       })
       .catch((err) => {
-        return res.status(401).send({
-          status: "error",
-          code: 401,
-          message: "user !?",
-          success: false,
-        });
+        return res.send(errorRequest);
       });
-  } catch (e) {
-    next();
+  } catch (error) {
+    next(error);
   }
 };
 
 exports.deleteUsers = (req, res, next) => {
   try {
     const id = req.body.id;
-
     deleteUser([id])
       .then((rows) => {
         if (rows.affectedRows) {
           selectAllUser().then((users) => {
             res.send({
               data: users,
-              success: true,
-              code: 200,
-              message: "success",
+              ...success,
             });
           });
         } else {
-          res.send({
-            success: false,
-            code: 404,
-            message: "user not found!",
-          });
+          res.send(notEdited);
         }
       })
       .catch((err) => {
-        return res.status(401).send({
-          status: "error",
-          code: 401,
-          message: "user !?",
-          success: false,
-        });
+        return res.send(errorRequest);
       });
-  } catch (e) {
-    next();
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -146,29 +116,18 @@ exports.editStatus = (req, res, next) => {
             });
             res.send({
               data: users,
-              success: true,
-              code: 200,
-              message: "success",
+              ...success,
             });
           });
         } else {
-          res.send({
-            success: false,
-            code: 404,
-            message: "user not found!",
-          });
+          res.send(notEdited);
         }
       })
       .catch((err) => {
-        return res.send({
-          status: "error",
-          code: 401,
-          message: "user !?",
-          success: false,
-        });
+        return res.send(errorRequest);
       });
-  } catch (e) {
-    next();
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -177,19 +136,29 @@ exports.addUsertypeA = (req, res, next) => {
     const { name, email, password, picture, phone } = req.body;
     addUser([name, email, password, "author", picture, phone])
       .then((rows) => {
-        console.log("====================================");
-        console.log(rows);
-        console.log("====================================");
+        selectAllUser().then((users) => {
+          res.send({ data: users, ...success });
+        });
       })
       .catch((err) => {
-        return res.send({
-          status: "error",
-          code: 401,
-          message: "user !?",
-          success: false,
-        });
+        return res.send(errorRequest);
       });
-  } catch (e) {
-    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.addUsertypeB = (req, res, next) => {
+  try {
+    const { name, email, password, picture, phone } = req.body;
+    newUser([name, email, password, phone])
+      .then((rows) => {
+        res.send(successNot);
+      })
+      .catch((err) => {
+        return res.send(errorRequest);
+      });
+  } catch (error) {
+    next(error);
   }
 };

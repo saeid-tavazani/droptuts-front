@@ -1,6 +1,6 @@
 const express = require("express");
+const auth = require("../middlewares/auth");
 const validator = require("../middlewares/validator");
-
 const {
   updateUserPass,
   updateUserInfo,
@@ -8,7 +8,8 @@ const {
   deleteUsers,
   users,
   addUsertypeA,
-} = require("../controllers/users");
+  addUsertypeB,
+} = require("../controllers/usersController");
 const {
   passValidator,
   phoneNumberValidator,
@@ -19,46 +20,71 @@ const {
 
 const router = express.Router();
 
-router.get("/", users);
-router.put("/delete", validator([idValidator().notEmpty()]), deleteUsers);
+router.get("/", [auth], users);
+router.put(
+  "/delete",
+  [auth, validator([idValidator().notEmpty()])],
+  deleteUsers
+);
 router.put(
   "/",
-  validator([
-    idValidator().notEmpty(),
-    customMadeValidator("status").notEmpty(),
-  ]),
+  [
+    auth,
+    validator([
+      idValidator().notEmpty(),
+      customMadeValidator("status").notEmpty(),
+    ]),
+  ],
   editStatus
 );
 router.put(
   "/update/info",
-  validator([
-    emailValidator().notEmpty(),
-    phoneNumberValidator().notEmpty(),
-    idValidator().notEmpty(),
-    customMadeValidator("picture").notEmpty(),
-  ]),
+  [
+    auth,
+    validator([
+      emailValidator().notEmpty(),
+      phoneNumberValidator().notEmpty(),
+      idValidator().notEmpty(),
+      customMadeValidator("picture").notEmpty(),
+    ]),
+  ],
   updateUserInfo
 );
 router.put(
   "/update/pass",
-  validator([
-    passValidator().notEmpty(),
-    customMadeValidator("currentPassword").notEmpty(),
-    idValidator().notEmpty(),
-  ]),
+  [
+    auth,
+    validator([
+      passValidator().notEmpty(),
+      customMadeValidator("currentPassword").notEmpty(),
+      idValidator().notEmpty(),
+    ]),
+  ],
   updateUserPass
 );
-
 router.post(
   "/add",
+  [
+    auth,
+    validator([
+      customMadeValidator("name").notEmpty(),
+      emailValidator().notEmpty(),
+      passValidator().notEmpty(),
+      customMadeValidator("picture").optional(),
+      phoneNumberValidator().notEmpty(),
+    ]),
+  ],
+  addUsertypeA
+);
+router.post(
+  "/new",
   validator([
     customMadeValidator("name").notEmpty(),
     emailValidator().notEmpty(),
     passValidator().notEmpty(),
-    customMadeValidator("picture").optional(),
     phoneNumberValidator().notEmpty(),
   ]),
-  addUsertypeA
+  addUsertypeB
 );
 
 module.exports = router;

@@ -59,6 +59,14 @@ const addUser = async (value) => {
   return rows;
 };
 
+const newUser = async (value) => {
+  const [rows] = await connection.query(
+    "INSERT INTO `users` (`full_name`, `email`, `password`, `phone`) VALUES (?, ?, ?, ?)",
+    value
+  );
+  return rows;
+};
+
 module.exports = {
   selectUser,
   selectAllUser,
@@ -68,4 +76,5 @@ module.exports = {
   updateUserPassword,
   selectUserId,
   addUser,
+  newUser,
 };
