@@ -1,4 +1,3 @@
-import TableProducts from "../components/products/TableProducts";
 import axios from "../assets/axios/Axios";
 import { useEffect } from "react";
 import LodingPage from "../components/UI/LodingPage";
@@ -40,9 +39,6 @@ export default function Products() {
     axios
       .get("/products", { headers: { authorization: token } })
       .then((response) => {
-        console.log("====================================");
-        console.log(response);
-        console.log("====================================");
         if (response.data.success) {
           dispatch(productsData(response.data.data));
         }
@@ -54,5 +50,4 @@ export default function Products() {
   ) : (
     <LodingPage />
   );
-  // return products ? <TableProducts data={products} /> : <LodingPage />;
 }

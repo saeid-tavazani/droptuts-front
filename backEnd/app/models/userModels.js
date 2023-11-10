@@ -16,7 +16,7 @@ const selectUserId = async (value) => {
 };
 const selectAllUser = async () => {
   const [rows] = await connection.query(
-    "SELECT `id`, `full_name`, `email`, `password`, `role`, `create_at`, `picture`, `status`, `phone` FROM `users` WHERE `is_deleted`=0"
+    "SELECT `id`, `full_name`, `email`, `role`, `create_at`, `picture`, `status`, `phone` FROM `users` WHERE `is_deleted`=0"
   );
   return rows;
 };
@@ -51,6 +51,14 @@ const updateUserPassword = async (value) => {
   return rows;
 };
 
+const addUser = async (value) => {
+  const [rows] = await connection.query(
+    "INSERT INTO `users` (`full_name`, `email`, `password`, `role`, `picture`, `phone`) VALUES (?, ?, ?, ?, ?, ?)",
+    value
+  );
+  return rows;
+};
+
 module.exports = {
   selectUser,
   selectAllUser,
@@ -59,4 +67,5 @@ module.exports = {
   updateUserInfo,
   updateUserPassword,
   selectUserId,
+  addUser,
 };

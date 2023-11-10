@@ -5,6 +5,7 @@ const {
   selectAllUser,
   deleteUser,
   changeStatus,
+  addUser,
 } = require("../models/userModels");
 
 const { verifyPass, generateHashPss } = require("../services/PasswordHash");
@@ -82,9 +83,6 @@ exports.users = (req, res, next) => {
   try {
     selectAllUser()
       .then((users) => {
-        users.map((user) => {
-          delete user.password;
-        });
         res.send({ data: users, success: true, code: 200, message: "success" });
       })
       .catch((err) => {
@@ -139,7 +137,6 @@ exports.deleteUsers = (req, res, next) => {
 exports.editStatus = (req, res, next) => {
   try {
     const { id, status } = req.body;
-
     changeStatus([status == 1 ? 0 : 1, id])
       .then((rows) => {
         if (rows.affectedRows) {
@@ -161,6 +158,28 @@ exports.editStatus = (req, res, next) => {
             message: "user not found!",
           });
         }
+      })
+      .catch((err) => {
+        return res.send({
+          status: "error",
+          code: 401,
+          message: "user !?",
+          success: false,
+        });
+      });
+  } catch (e) {
+    next();
+  }
+};
+
+exports.addUsertypeA = (req, res, next) => {
+  try {
+    const { name, email, password, picture, phone } = req.body;
+    addUser([name, email, password, "author", picture, phone])
+      .then((rows) => {
+        console.log("====================================");
+        console.log(rows);
+        console.log("====================================");
       })
       .catch((err) => {
         return res.send({

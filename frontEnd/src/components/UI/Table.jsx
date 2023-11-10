@@ -4,9 +4,7 @@ export default function Table({ data, titels, keys, actions = null }) {
     const d = new Date(date);
     return new Intl.DateTimeFormat("fa-IR").format(d);
   };
-  console.log("====================================");
-  console.log(data);
-  console.log("====================================");
+
   const createView = (type, value) => {
     switch (type) {
       case "text":

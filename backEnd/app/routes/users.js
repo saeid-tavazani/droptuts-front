@@ -7,6 +7,7 @@ const {
   editStatus,
   deleteUsers,
   users,
+  addUsertypeA,
 } = require("../controllers/users");
 const {
   passValidator,
@@ -46,6 +47,18 @@ router.put(
     idValidator().notEmpty(),
   ]),
   updateUserPass
+);
+
+router.post(
+  "/add",
+  validator([
+    customMadeValidator("name").notEmpty(),
+    emailValidator().notEmpty(),
+    passValidator().notEmpty(),
+    customMadeValidator("picture").optional(),
+    phoneNumberValidator().notEmpty(),
+  ]),
+  addUsertypeA
 );
 
 module.exports = router;
