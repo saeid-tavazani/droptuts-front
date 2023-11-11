@@ -7,7 +7,6 @@ import Avatar from "../../UI/Avatar.jsx";
 import { BiLogIn } from "react-icons/bi";
 export default function Navbar() {
   const user = useSelector((state) => state.user.value);
-
   const data = [
     {
       text: "ورود",
@@ -20,7 +19,6 @@ export default function Navbar() {
       icon: "",
     },
   ];
-
   const navigation = [
     { text: "صفحه اصلی", href: "/" },
     { text: "آخرین دوره ها", href: "/" },
@@ -28,7 +26,7 @@ export default function Navbar() {
     { text: "تماس با ما", href: "/" },
   ];
   return (
-    <nav className="w-full mx-auto px-4 h-16 border-b">
+    <nav className="w-full mx-auto px-4 h-16 border-b fixed">
       <article
         className={`${styles.container} flex items-center justify-between h-full`}
       >
