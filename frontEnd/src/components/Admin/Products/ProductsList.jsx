@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Table from "../UI/Table";
+import Table from "../../UI/Table";
 export default function ProductsList({ products }) {
   const thead = [
     "id",

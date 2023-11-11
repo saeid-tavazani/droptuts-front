@@ -5,7 +5,7 @@ import { BsShop } from "react-icons/bs";
 export default function Aside({ user }) {
   const data = [
     {
-      href: "/",
+      href: "/admin/panel",
       Text: "داشبورد",
       icon: <AiOutlineHome size={20} />,
       access: "*",

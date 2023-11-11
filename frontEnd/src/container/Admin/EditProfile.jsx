@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import Input from "../components/UI/Input";
-import Button from "../components/UI/Button";
+import Input from "../../components/UI/Input";
+import Button from "../../components/UI/Button";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "../assets/axios/Axios";
+import axios from "../../assets/axios/Axios";
 import { useNavigate } from "react-router-dom";
 
 export default function EditProfile() {

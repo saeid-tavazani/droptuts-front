@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { usersInfo } from "../store/usersSlice";
-import axios from "../assets/axios/Axios";
-import LodingPage from "../components/UI/LodingPage";
-import Tabs from "../components/UI/Tabs";
+import { usersInfo } from "../../store/usersSlice";
+import axios from "../../assets/axios/Axios";
+import LodingPage from "../../components/UI/LodingPage";
+import Tabs from "../../components/UI/Tabs";
 import { PiUsersBold } from "react-icons/pi";
 import { AiOutlineUserAdd } from "react-icons/ai";
-import UsersAdd from "../components/Users/UsersAdd";
-import UsersList from "../components/Users/UsersList";
+import UsersAdd from "../../components/Admin/Users/UsersAdd";
+import UsersList from "../../components/Admin/Users/UsersList";
 
 export default function Users() {
   const users = useSelector((state) => state.users.value);

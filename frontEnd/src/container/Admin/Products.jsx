@@ -1,11 +1,11 @@
-import axios from "../assets/axios/Axios";
+import axios from "../../assets/axios/Axios";
 import { useEffect } from "react";
-import LodingPage from "../components/UI/LodingPage";
+import LodingPage from "../../components/UI/LodingPage";
 import { useSelector, useDispatch } from "react-redux";
-import { products as productsData } from "../store/productsSlice";
-import Tabs from "../components/UI/Tabs";
-import ProductsList from "../components/Products/ProductsList";
-import ProductsAdd from "../components/Products/ProductsAdd";
+import { products as productsData } from "../../store/productsSlice";
+import Tabs from "../../components/UI/Tabs";
+import ProductsList from "../../components/Admin/Products/ProductsList";
+import ProductsAdd from "../../components/Admin/Products/ProductsAdd";
 import { PiUsersBold } from "react-icons/pi";
 import { AiOutlineUserAdd } from "react-icons/ai";
 

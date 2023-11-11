@@ -1,10 +1,10 @@
-import Input from "../UI/Input";
+import Input from "../../UI/Input";
 import { useState } from "react";
-import axios from "../../assets/axios/Axios";
-import Button from "../UI/Button";
+import axios from "../../../assets/axios/Axios";
+import Button from "../../UI/Button";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { usersInfo } from "../../store/usersSlice";
+import { usersInfo } from "../../../store/usersSlice";
 
 export default function UsersAdd({ token }) {
   const [username, setUserName] = useState("");

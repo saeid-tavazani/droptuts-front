@@ -1,10 +1,10 @@
-import Input from "../UI/Input";
+import Input from "../../UI/Input";
 import { Editor } from "@tinymce/tinymce-react";
 import { useState } from "react";
-import Buttom from "../UI/Button";
-import axios from "../../assets/axios/Axios";
+import Buttom from "../../UI/Button";
+import axios from "../../../assets/axios/Axios";
 import { useSelector, useDispatch } from "react-redux";
-import { products as productsData } from "../../store/productsSlice";
+import { products as productsData } from "../../../store/productsSlice";
 
 export default function ProductsAdd({ id, token }) {
   const [title, setTitle] = useState("");
@@ -12,7 +12,6 @@ export default function ProductsAdd({ id, token }) {
   const [price, setPrice] = useState("0");
   const [poster, setPoster] = useState("");
   const [discount, setDiscount] = useState("0");
-  // const [title, setTitle] = useState("");
   const dispatch = useDispatch();
 
   const addProduct = (e) => {
