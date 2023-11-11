@@ -5,7 +5,7 @@ import { RouterProvider } from "react-router-dom";
 import Router from "./router/Router";
 import store from "./store/reducer";
 import("preline");
-import("./assets/css/main.css");
+import("./assets/style/main.css");
 import("./assets/Font/font.woff");
 import "react-toastify/dist/ReactToastify.css";
 

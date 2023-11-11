@@ -23,7 +23,7 @@ const Router = createBrowserRouter(
       </Route>
       <Route path="admin/panelsignin" element={<SignIn />} />
       <Route path="admin/panellogout" element={<LogOut />} />
-      {/* <Route path="/" element={<App />} /> */}
+      <Route path="/" element={<App />} />
     </>
   )
 );

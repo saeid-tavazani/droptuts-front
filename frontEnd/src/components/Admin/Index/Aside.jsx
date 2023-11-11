@@ -11,6 +11,12 @@ export default function Aside({ user }) {
       access: "*",
     },
     {
+      href: "/",
+      Text: "سایت",
+      icon: <AiOutlineHome size={20} />,
+      access: "*",
+    },
+    {
       href: "users",
       Text: "کاربران",
       icon: <FiUsers size={20} />,
