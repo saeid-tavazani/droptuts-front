@@ -48,8 +48,8 @@ export default function Table({ data, titels, keys, actions = null }) {
         </tr>
       </thead>
       <tbody className="divide-y divide-gray-200 ">
-        {data.map((item) => (
-          <tr key={item.id}>
+        {data.map((item, i) => (
+          <tr key={item.id + i}>
             {keys.map((keysValues, index) => (
               <TD key={index}>
                 {createView(keysValues.type, item[keysValues.value])}

@@ -6,8 +6,8 @@ import LodingPage from "../components/UI/LodingPage";
 import Tabs from "../components/UI/Tabs";
 import { PiUsersBold } from "react-icons/pi";
 import { AiOutlineUserAdd } from "react-icons/ai";
-import UsersAdd from "../components/users/usersAdd";
-import UsersList from "../components/users/UsersList";
+import UsersAdd from "../components/Users/UsersAdd";
+import UsersList from "../components/Users/UsersList";
 
 export default function Users() {
   const users = useSelector((state) => state.users.value);
@@ -20,9 +20,6 @@ export default function Users() {
       .then((response) => {
         if (response.data.success) {
           dispatch(usersInfo(response.data.data));
-          console.log("====================================");
-          console.log(response.data.data);
-          console.log("====================================");
         }
       })
       .catch((err) => {

@@ -3,6 +3,8 @@ import { useState } from "react";
 import axios from "../../assets/axios/Axios";
 import Button from "../UI/Button";
 import { ToastContainer, toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { usersInfo } from "../../store/usersSlice";
 
 export default function UsersAdd({ token }) {
   const [username, setUserName] = useState("");
@@ -11,7 +13,7 @@ export default function UsersAdd({ token }) {
   const [password2, setPassword2] = useState("");
   const [phone, setPhone] = useState("");
   const [picture, setPicture] = useState("");
-
+  const dispatch = useDispatch();
   const handlerUser = (event) => {
     event.preventDefault();
     if (password == password2) {
@@ -28,10 +30,8 @@ export default function UsersAdd({ token }) {
             },
             { headers: { authorization: token } }
           )
-          .then((res) => {
-            console.log("====================================");
-            console.log(res);
-            console.log("====================================");
+          .then((response) => {
+            dispatch(usersInfo(response.data.data));
           });
     } else {
       toast.error("رمز عبور و تکرار ان مساوی نمی باشد", {

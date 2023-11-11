@@ -29,3 +29,7 @@ exports.phoneNumberValidator = () => {
 const isIranianPhoneNumber = (value) => {
   return /^09\d{9}$/.test(value);
 };
+
+exports.jsonValidator = (value) => {
+  return body(value).trim().isJSON();
+};

@@ -1,12 +1,32 @@
-const { selectAll, addProduct } = require("../models/productModels");
+const {
+  selectAll,
+  addProduct,
+  selectActive,
+} = require("../models/productModels");
 const {
   success,
   errorRequest,
   successAdd,
 } = require("../services/ResponseStatusCodes");
-exports.getProduct = (req, res, next) => {
+exports.getProductAll = (req, res, next) => {
   try {
     selectAll()
+      .then((response) => {
+        res.send({
+          data: response,
+          ...success,
+        });
+      })
+      .catch((err) => {
+        res.send(errorRequest);
+      });
+  } catch (error) {
+    next(error);
+  }
+};
+exports.getProductActive = (req, res, next) => {
+  try {
+    selectActive()
       .then((response) => {
         res.send({
           data: response,
@@ -23,17 +43,20 @@ exports.getProduct = (req, res, next) => {
 
 exports.addProduct = (req, res, next) => {
   try {
-    let { author_id, description, title } = req.body;
+    let { id, description, title } = req.body;
     let body = req.body;
     addProduct([
       title,
       description,
       body.price ? body.price : "NULL",
       body.poster ? body.poster : "NULL",
-      body.active ? body.active : "NULL",
-      author_id,
-      body.headlines ? body.headlines : "NULL",
+      Number(id),
       body.discount ? body.discount : "NULL",
+      body.headings
+        ? body.headings
+        : JSON.stringify([
+            { time: 20, isFree: true, name: "test1", url: "http://" },
+          ]),
     ])
       .then((result) => {
         selectAll().then((response) => {
@@ -44,8 +67,18 @@ exports.addProduct = (req, res, next) => {
         });
       })
       .catch((err) => {
+        console.log("====================================");
+        console.log(err);
+        console.log("====================================");
         res.send(errorRequest);
       });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.editProduct = (req, res, next) => {
+  try {
   } catch (error) {
     next(error);
   }

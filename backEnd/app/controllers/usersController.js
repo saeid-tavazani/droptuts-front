@@ -134,7 +134,7 @@ exports.editStatus = (req, res, next) => {
 exports.addUsertypeA = (req, res, next) => {
   try {
     const { name, email, password, picture, phone } = req.body;
-    addUser([name, email, password, "author", picture, phone])
+    addUser([name, email, generateHashPss(password), "author", picture, phone])
       .then((rows) => {
         selectAllUser().then((users) => {
           res.send({ data: users, ...success });
@@ -150,8 +150,8 @@ exports.addUsertypeA = (req, res, next) => {
 
 exports.addUsertypeB = (req, res, next) => {
   try {
-    const { name, email, password, picture, phone } = req.body;
-    newUser([name, email, password, phone])
+    const { name, email, password, phone } = req.body;
+    newUser([name, email, generateHashPss(password), phone])
       .then((rows) => {
         res.send(successNot);
       })

@@ -71,9 +71,6 @@ export default function EditProfile() {
           { headers: { authorization: token } }
         )
         .then((res) => {
-          console.log("====================================");
-          console.log(res);
-          console.log("====================================");
           if (res.data.success) {
             toast.success("اطلاعات با موفقیت تغییر یافت", {
               position: "top-center",
