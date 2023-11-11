@@ -67,9 +67,6 @@ exports.addProduct = (req, res, next) => {
         });
       })
       .catch((err) => {
-        console.log("====================================");
-        console.log(err);
-        console.log("====================================");
         res.send(errorRequest);
       });
   } catch (error) {

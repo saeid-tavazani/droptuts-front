@@ -17,7 +17,6 @@ export default function ProductsAdd({ id, token }) {
 
   const addProduct = (e) => {
     e.preventDefault();
-
     axios
       .post(
         "/products/new",
@@ -25,9 +24,6 @@ export default function ProductsAdd({ id, token }) {
         { headers: { authorization: token } }
       )
       .then((response) => {
-        console.log("====================================");
-        console.log(response);
-        console.log("====================================");
         dispatch(productsData(response.data.data));
       });
   };
