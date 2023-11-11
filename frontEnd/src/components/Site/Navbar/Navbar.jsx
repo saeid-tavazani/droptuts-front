@@ -26,7 +26,7 @@ export default function Navbar() {
     { text: "تماس با ما", href: "/" },
   ];
   return (
-    <nav className="w-full mx-auto px-4 h-16 border-b fixed">
+    <nav className="w-full mx-auto px-4 h-16 border-b fixed bg-white">
       <article
         className={`${styles.container} flex items-center justify-between h-full`}
       >
