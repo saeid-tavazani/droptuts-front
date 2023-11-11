@@ -1,3 +1,5 @@
+import Navbar from "./components/Site/Navbar/Navbar";
+
 export default function App() {
-  return <p>sadas</p>;
+  return <Navbar />;
 }

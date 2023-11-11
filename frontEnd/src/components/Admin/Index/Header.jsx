@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { BiLogOut, BiUserCircle } from "react-icons/bi";
 import { FcMenu } from "react-icons/fc";
 import { LiaUserEditSolid } from "react-icons/lia";
+import Avatar from "../../UI/Avatar";
 export default function Header({ siteName, user }) {
   const data = [
     {
@@ -38,7 +39,10 @@ export default function Header({ siteName, user }) {
           <Link className="flex-none text-xl font-semibold " to={"/"}>
             {siteName}
           </Link>
-          <div className="flex flex-row items-center justify-end gap-2">
+
+          <Avatar list={data} user={user} />
+
+          {/* <div className="flex flex-row items-center justify-end gap-2">
             <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
               <button
                 id="hs-dropdown-with-header"
@@ -81,7 +85,7 @@ export default function Header({ siteName, user }) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </nav>
     </header>

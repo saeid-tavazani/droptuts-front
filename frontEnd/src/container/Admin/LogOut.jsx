@@ -10,6 +10,6 @@ export default function LogOut() {
   useEffect(() => {
     Cookies.remove(jsonData.cookieTokenName);
     dispatch(userInfo(null));
-    navigate("/signin");
+    navigate("signin");
   }, []);
 }

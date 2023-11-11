@@ -26,15 +26,15 @@ export default function Index() {
               dispatch(userInfo(response.data.data));
               dispatch(setToken(cookie));
             } else {
-              navigate("/signin");
+              navigate("signin");
             }
           })
           .catch((error) => {
-            navigate("/signin");
+            navigate("signin");
             Cookies.remove(jsonData.cookieTokenName);
           });
       } else {
-        navigate("/signin");
+        navigate("signin");
       }
     }
   }, []);
