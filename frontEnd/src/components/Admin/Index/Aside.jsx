@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
-import { BsShop } from "react-icons/bs";
+import { BsShop, BsGlobe2 } from "react-icons/bs";
+
 export default function Aside({ user }) {
   const data = [
     {
@@ -13,7 +14,7 @@ export default function Aside({ user }) {
     {
       href: "/",
       Text: "سایت",
-      icon: <AiOutlineHome size={20} />,
+      icon: <BsGlobe2 size={20} />,
       access: "*",
     },
     {
