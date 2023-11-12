@@ -17,3 +17,6 @@
 :focus {
   outline: none;
 }
+.tox-statusbar__branding {
+  display: none;
+}

@@ -1,10 +1,10 @@
 import Input from "../../UI/Input";
-import { Editor } from "@tinymce/tinymce-react";
 import { useState } from "react";
 import Buttom from "../../UI/Button";
 import axios from "../../../assets/axios/Axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { products as productsData } from "../../../store/productsSlice";
+import TextEditor from "../../UI/TextEditor";
 
 export default function ProductsAdd({ id, token }) {
   const [title, setTitle] = useState("");
@@ -39,12 +39,13 @@ export default function ProductsAdd({ id, token }) {
           type="text"
           className="w-96"
         />
-        <textarea
+        {/* <textarea
           onChange={() => setDescription(event.target.value)}
           placeholder="توضیحات"
           type="text"
           className="py-3 px-4 block transition-all  border-gray-200 border rounded text-sm focus:border-blue-500 focus:ring-blue-500 w-full"
-        ></textarea>
+        ></textarea> */}
+        <TextEditor />
         <div className="flex gap-2 flex-wrap">
           <Input
             onChange={() => setPrice(event.target.value)}
