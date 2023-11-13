@@ -1,6 +1,37 @@
 import { AiOutlineClose } from "react-icons/ai";
-
+import { useState } from "react";
+import Input from "../../UI/Input";
+import { GrAddCircle } from "react-icons/gr";
+import { LuDelete } from "react-icons/lu";
 export default function AddHeader() {
+  const [educations, setEducations] = useState([
+    {
+      headlines: "فصل 1",
+      data: [
+        { type: "file", tite: "java", time: "12:57", link: "https://132456" },
+        {
+          type: "video",
+          tite: "javascript",
+          time: "18:57",
+          link: "https://132456",
+        },
+        { type: "file", tite: "html", time: "15:57", link: "https://132456" },
+      ],
+    },
+  ]);
+
+  const changeVlueEducationData = (e, index, index2, type) => {
+    const newData = educations;
+    newData[index].data[index2][type] = e.target.value;
+    setEducations(newData);
+  };
+
+  const changeVlueEducationTitel = (e, index) => {
+    const newData = educations;
+    newData[index].headlines = e.target.value;
+    setEducations(newData);
+  };
+
   return (
     <>
       <button
@@ -28,20 +59,67 @@ export default function AddHeader() {
                 <AiOutlineClose size={20} />
               </button>
             </div>
-            <div className="p-4 overflow-y-auto"></div>
+            <div className="p-4 overflow-y-auto">
+              {educations.map((education, index) => (
+                <div key={index} className="flex flex-col gap-2">
+                  <div className="relative flex items-center">
+                    <Input
+                      type="text"
+                      onChange={() => changeVlueEducationTitel(event, index)}
+                      defaultValue={education.headlines}
+                    />
+                    <div className="flex gap-1 absolute left-2">
+                      <GrAddCircle
+                        className="cursor-pointer text-green-500"
+                        size={25}
+                      />
+                      <LuDelete
+                        className="cursor-pointer text-red-500"
+                        size={25}
+                      />
+                    </div>
+                  </div>
+                  {education.data.map((values, id) => (
+                    <div key={"00".concat(id)} className="w-full flex gap-2">
+                      <Input
+                        onChange={() =>
+                          changeVlueEducationData(event, index, id, "time")
+                        }
+                        className="w-20 text-center"
+                        defaultValue={values.time}
+                      />
+                      <Input
+                        onChange={() =>
+                          changeVlueEducationData(event, index, id, "link")
+                        }
+                        defaultValue={values.link}
+                      />
+                      <Input
+                        onChange={() =>
+                          changeVlueEducationData(event, index, id, "tite")
+                        }
+                        defaultValue={values.tite}
+                      />
+                      <select
+                        onChange={() =>
+                          changeVlueEducationData(event, index, id, "type")
+                        }
+                        className="p-3  pe-9 block  border-gray-950 w-32 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 "
+                      >
+                        <option value="file">file</option>
+                        <option value="video">video</option>
+                      </select>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
             <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t ">
-              <button
-                type="button"
-                className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none "
-                data-hs-overlay="#hs-scroll-inside-body-modal"
-              >
-                Close
-              </button>
               <button
                 type="button"
                 className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none "
               >
-                Save changes
+                ذخیره
               </button>
             </div>
           </div>
