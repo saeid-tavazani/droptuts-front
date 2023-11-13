@@ -55,6 +55,7 @@ export default function TextEditor({ ...rest }) {
         directionality: "rtl",
         skin: false,
         content_css: false,
+        width: "100%",
         plugins: [
           "advlist",
           "anchor",

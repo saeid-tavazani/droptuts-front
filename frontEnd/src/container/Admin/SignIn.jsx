@@ -47,7 +47,6 @@ export default function SignIn() {
             dispatch(userInfo(res.data.data));
             dispatch(setToken(res.data.token));
             if (inputRemember) {
-              console.log(123465);
               Cookies.set(jsonData.cookieTokenName, res.data.token, {
                 expires: jsonData.expiresDate,
               });
