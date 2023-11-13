@@ -1,8 +1,9 @@
 import { AiOutlineClose } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "../../UI/Input";
 import { GrAddCircle } from "react-icons/gr";
 import { LuDelete } from "react-icons/lu";
+import Button from "../../UI/Button";
 export default function AddHeader() {
   const [educations, setEducations] = useState([
     {
@@ -19,6 +20,7 @@ export default function AddHeader() {
       ],
     },
   ]);
+  const [update, setUpdate] = useState(0);
 
   const changeVlueEducationData = (e, index, index2, type) => {
     const newData = educations;
@@ -30,6 +32,48 @@ export default function AddHeader() {
     const newData = educations;
     newData[index].headlines = e.target.value;
     setEducations(newData);
+  };
+
+  // useEffect(()=>{
+  const adddata = (index) => {
+    let newData = educations;
+    newData[index].data.push({
+      type: "video",
+      tite: "مثال : html",
+      time: "10:00",
+      link: "https://",
+    });
+    setEducations(newData);
+    setUpdate(update + 1);
+  };
+  // },[newData])
+
+  const addHeaderEducation = (e) => {
+    e.preventDefault();
+    let newData = educations;
+    newData.push({
+      headlines: "فصل جدید",
+      data: [
+        {
+          type: "video",
+          tite: "مثال : html",
+          time: "10:00",
+          link: "https://",
+        },
+      ],
+    });
+    setEducations(newData);
+    setUpdate(update + 1);
+  };
+
+  const removData = (index) => {
+    let newData = educations;
+    newData[index].data.pop();
+    if (newData[index].data.length == 0) {
+      delete newData[index];
+    }
+    setEducations(newData);
+    setUpdate(update + 1);
   };
 
   return (
@@ -59,7 +103,7 @@ export default function AddHeader() {
                 <AiOutlineClose size={20} />
               </button>
             </div>
-            <div className="p-4 overflow-y-auto">
+            <div className="p-4 overflow-y-auto flex flex-col gap-2">
               {educations.map((education, index) => (
                 <div key={index} className="flex flex-col gap-2">
                   <div className="relative flex items-center">
@@ -70,10 +114,12 @@ export default function AddHeader() {
                     />
                     <div className="flex gap-1 absolute left-2">
                       <GrAddCircle
+                        onClick={() => adddata(index)}
                         className="cursor-pointer text-green-500"
                         size={25}
                       />
                       <LuDelete
+                        onClick={() => removData(index)}
                         className="cursor-pointer text-red-500"
                         size={25}
                       />
@@ -104,6 +150,7 @@ export default function AddHeader() {
                         onChange={() =>
                           changeVlueEducationData(event, index, id, "type")
                         }
+                        defaultValue={values.type}
                         className="p-3  pe-9 block  border-gray-950 w-32 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 "
                       >
                         <option value="file">file</option>
@@ -115,12 +162,8 @@ export default function AddHeader() {
               ))}
             </div>
             <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t ">
-              <button
-                type="button"
-                className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none "
-              >
-                ذخیره
-              </button>
+              <Button onClick={addHeaderEducation}>افزودن فصل جدید</Button>
+              <Button>ذخیره</Button>
             </div>
           </div>
         </div>
