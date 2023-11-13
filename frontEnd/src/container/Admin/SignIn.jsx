@@ -11,9 +11,6 @@ import Button from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
 import { setToken } from "../../store/token";
 export default function SignIn() {
-  const [inputEmail, setInputEmail] = useState(null);
-  const [inputPassword, setInputPassword] = useState(null);
-  const [inputRemember, setInputRemember] = useState(false);
   const [loding, setLoding] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -28,6 +25,12 @@ export default function SignIn() {
 
   const loginUser = (event) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    const inputEmail = formData.get("inputEmail");
+    const inputPassword = formData.get("inputPassword");
+    const inputRemember = formData.get("inputRemember");
+
     if (
       inputEmail.trim() != "" &&
       inputPassword.trim() != "" &&
@@ -44,6 +47,7 @@ export default function SignIn() {
             dispatch(userInfo(res.data.data));
             dispatch(setToken(res.data.token));
             if (inputRemember) {
+              console.log(123465);
               Cookies.set(jsonData.cookieTokenName, res.data.token, {
                 expires: jsonData.expiresDate,
               });
@@ -109,7 +113,7 @@ export default function SignIn() {
             ورود به حساب کاربری
           </h1>
         </div>
-        <form className="mt-5" onSubmit={() => loginUser(event)}>
+        <form className="mt-5" onSubmit={loginUser}>
           <div className="grid gap-y-4">
             <label className="block text-sm mb-2">
               ایمیل
@@ -119,7 +123,7 @@ export default function SignIn() {
                 className={`mt-2 w-full ${
                   error && "focus:border-red-500 focus:ring-red-500"
                 }`}
-                onChange={() => setInputEmail(event.target.value)}
+                name="inputEmail"
                 required
               />
             </label>
@@ -132,13 +136,13 @@ export default function SignIn() {
                 } mt-2 w-full`}
                 required
                 aria-describedby="password-error"
-                onChange={() => setInputPassword(event.target.value)}
+                name="inputPassword"
               />
             </label>
             <label className="text-sm flex items-center gap-2 cursor-pointer">
               <Input
                 type="checkbox"
-                onChange={() => setInputRemember(event.target.checked)}
+                name="inputRemember"
                 className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 w-fit"
               />
               منا بخاطر بسبار

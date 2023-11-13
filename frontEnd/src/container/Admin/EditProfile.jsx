@@ -9,14 +9,14 @@ import { useNavigate } from "react-router-dom";
 export default function EditProfile() {
   const user = useSelector((state) => state.user.value);
   const token = useSelector((state) => state.token.value);
-  const [profile, setProfile] = useState(user.picture);
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState(user.phone);
-  const [email, setEmail] = useState(user.email);
+
   const navigate = useNavigate();
   const formSubmitPass = (event) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const currentPassword = formData.get("currentPassword");
+    const password = formData.get("password");
+    const password2 = formData.get("password2");
     if (password.trim() === password2.trim()) {
       if (currentPassword.trim().length) {
         axios
@@ -59,15 +59,19 @@ export default function EditProfile() {
 
   const formSubmit = (event) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get("email");
+    const picture = formData.get("picture");
+    const phone = formData.get("phone");
     if (
-      profile.trim() !== "" &&
+      picture.trim() !== "" &&
       phone.trim() !== "" &&
       email.trim().includes("@")
     ) {
       axios
         .put(
           "/users/update/info",
-          { id: user.id, picture: profile, phone, email },
+          { id: user.id, picture, phone, email },
           { headers: { authorization: token } }
         )
         .then((res) => {
@@ -127,10 +131,7 @@ export default function EditProfile() {
         theme="light"
       />
       <div className="flex flex-wrap gap-5 justify-evenly">
-        <form
-          onSubmit={() => formSubmit(event)}
-          className="flex flex-col gap-4"
-        >
+        <form onSubmit={formSubmit} className="flex flex-col gap-4">
           <label>
             <span className="text-sm">عکس حساب کاربری</span>
             <Input
@@ -138,7 +139,7 @@ export default function EditProfile() {
               className="w-96"
               type="text"
               defaultValue={user.picture}
-              onChange={() => setProfile(event.target.value)}
+              name="picture"
             />
           </label>
           <label>
@@ -148,7 +149,7 @@ export default function EditProfile() {
               className="w-96"
               type="tel"
               defaultValue={user.phone}
-              onChange={() => setPhone(event.target.value)}
+              name="phone"
             />
           </label>
           <label>
@@ -158,23 +159,15 @@ export default function EditProfile() {
               className="w-96"
               type="email"
               defaultValue={user.email}
-              onChange={() => setEmail(event.target.value)}
+              name="email"
             />
           </label>
           <Button className="w-fit">ثبت</Button>
         </form>
-        <form
-          onSubmit={() => formSubmitPass(event)}
-          className="flex flex-col gap-4"
-        >
+        <form onSubmit={formSubmitPass} className="flex flex-col gap-4">
           <label>
             <span className="text-sm">رمز قبلی</span>
-            <Input
-              onChange={() => setCurrentPassword(event.target.value)}
-              dir="ltr"
-              className="w-96"
-              type="text"
-            />
+            <Input name="currentPassword" className="w-96" type="text" />
           </label>
           <label>
             <span className="text-sm">رمز جدید</span>
@@ -182,6 +175,7 @@ export default function EditProfile() {
               onChange={() => setPassword(event.target.value)}
               className="w-96"
               type="password"
+              name="password"
             />
           </label>
           <label>
@@ -190,6 +184,7 @@ export default function EditProfile() {
               onChange={() => setPassword2(event.target.value)}
               className="w-96"
               type="password"
+              name="password2"
             />
           </label>
           <Button className="w-fit">ثبت</Button>

@@ -1,5 +1,4 @@
 import Input from "../../UI/Input";
-import { useState } from "react";
 import axios from "../../../assets/axios/Axios";
 import Button from "../../UI/Button";
 import { ToastContainer, toast } from "react-toastify";
@@ -7,26 +6,27 @@ import { useDispatch } from "react-redux";
 import { usersInfo } from "../../../store/usersSlice";
 
 export default function UsersAdd({ token }) {
-  const [username, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-  const [phone, setPhone] = useState("");
-  const [picture, setPicture] = useState("");
   const dispatch = useDispatch();
   const handlerUser = (event) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const password = formData.get("password");
+    const password2 = formData.get("password2");
+    const email = formData.get("email");
+    const name = formData.get("name");
+    const picture = formData.get("picture");
+
     if (password == password2) {
       if (username != "" && email != "" && phone != "")
         axios
           .post(
             "/users/add",
             {
-              password: password,
-              email: email,
-              name: username,
-              phone: phone,
-              picture: picture,
+              password,
+              email,
+              name,
+              phone,
+              picture,
             },
             { headers: { authorization: token } }
           )
@@ -61,40 +61,17 @@ export default function UsersAdd({ token }) {
         pauseOnHover
         theme="light"
       />
-      <form
-        className="flex flex-col w-96 gap-2"
-        onSubmit={() => handlerUser(event)}
-      >
+      <form className="flex flex-col w-96 gap-2" onSubmit={handlerUser}>
+        <Input placeholder="نام" type="text" name="name" />
+        <Input placeholder="ایمیل" type="email" name="email" />
+        <Input placeholder="رمز عبور" type="password" name="password" />
         <Input
-          onChange={() => setUserName(event.target.value)}
-          placeholder="نام"
-          type="text"
-        />
-        <Input
-          onChange={() => setEmail(event.target.value)}
-          placeholder="ایمیل"
-          type="email"
-        />
-        <Input
-          onChange={() => setPassword(event.target.value)}
-          placeholder="رمز عبور"
-          type="password"
-        />
-        <Input
-          onChange={() => setPassword2(event.target.value)}
           placeholder=" تکرار رمز عبور "
           type="password"
+          name="password2"
         />
-        <Input
-          onChange={() => setPicture(event.target.value)}
-          placeholder="تصویر"
-          type="text"
-        />
-        <Input
-          onChange={() => setPhone(event.target.value)}
-          placeholder="شماره تلفن"
-          type="tel"
-        />
+        <Input placeholder="تصویر" type="text" name="picture" />
+        <Input placeholder="شماره تلفن" type="tel" name="phone" />
         <Button>ثبت</Button>
       </form>
     </div>

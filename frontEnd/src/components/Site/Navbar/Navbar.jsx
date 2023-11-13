@@ -1,6 +1,5 @@
 import styles from "../../../assets/style/style.js";
 import { Link } from "react-router-dom";
-// FiMenu
 import { FiMenu } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import Avatar from "../../UI/Avatar.jsx";

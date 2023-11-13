@@ -51,6 +51,4 @@ export default function Products() {
       ]}
     />
   );
-
-  // return products ? <ProductsList products={products} /> : <LodingPage />;
 }

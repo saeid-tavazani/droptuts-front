@@ -1,18 +1,11 @@
 import { Editor } from "@tinymce/tinymce-react";
-// TinyMCE so the global var exists
-// eslint-disable-next-line no-unused-vars
+
 import tinymce from "tinymce/tinymce";
-// DOM model
 import "tinymce/models/dom/model";
-// Theme
 import "tinymce/themes/silver";
-// Toolbar icons
 import "tinymce/icons/default";
-// Editor styles
 import "tinymce/skins/ui/oxide/skin.min.css";
 
-// importing the plugin js.
-// if you use a plugin that is not listed here the editor will fail to load
 import "tinymce/plugins/advlist";
 import "tinymce/plugins/anchor";
 import "tinymce/plugins/autolink";
@@ -45,22 +38,17 @@ import "tinymce/plugins/visualblocks";
 import "tinymce/plugins/visualchars";
 import "tinymce/plugins/wordcount";
 
-// importing plugin resources
 import "tinymce/plugins/emoticons/js/emojis";
 
-// Content styles, including inline UI like fake cursors
-/* eslint import/no-webpack-loader-syntax: off */
 import contentCss from "tinymce/skins/content/default/content.min.css";
 import contentUiCss from "tinymce/skins/ui/oxide/content.min.css";
 export default function TextEditor({ ...rest }) {
-  // note that skin and content_css is disabled to avoid the normal
-  // loading process and is instead loaded as a string via content_style
   return (
     <Editor
       init={{
         elementpath: false,
         promotion: false,
-        language_url: "/langs/fa.js", // path from the root of your web application — / — to the language pack(s)
+        language_url: "/langs/fa.js",
         language: "fa",
         typography_langs: ["en", "fa"],
         typography_default_lang: "fa",

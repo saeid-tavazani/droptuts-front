@@ -1,21 +1,24 @@
 import Input from "../../UI/Input";
-import { useState } from "react";
 import Buttom from "../../UI/Button";
 import axios from "../../../assets/axios/Axios";
 import { useDispatch } from "react-redux";
 import { products as productsData } from "../../../store/productsSlice";
 import TextEditor from "../../UI/TextEditor";
+import { useRef } from "react";
 
 export default function ProductsAdd({ id, token }) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("0");
-  const [poster, setPoster] = useState("");
-  const [discount, setDiscount] = useState("0");
+  const editorRef = useRef(null);
   const dispatch = useDispatch();
 
   const addProduct = (e) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const price = formData.get("price");
+    const poster = formData.get("poster");
+    const discount = formData.get("discount");
+    const title = formData.get("title");
+    const description = editorRef.current.getContent();
+
     axios
       .post(
         "/products/new",
@@ -29,51 +32,36 @@ export default function ProductsAdd({ id, token }) {
 
   return (
     <div>
-      <form
-        onSubmit={() => addProduct(event)}
-        className="flex gap-2 flex-col flex-wrap"
-      >
-        <Input
-          onChange={() => setTitle(event.target.value)}
-          placeholder="عنوان"
-          type="text"
-          className="w-96"
+      <form onSubmit={addProduct} className="flex gap-2 flex-col flex-wrap">
+        <Input placeholder="عنوان" type="text" className="w-96" name="title" />
+
+        <TextEditor
+          name="description"
+          onInit={(evt, editor) => (editorRef.current = editor)}
         />
-        {/* <textarea
-          onChange={() => setDescription(event.target.value)}
-          placeholder="توضیحات"
-          type="text"
-          className="py-3 px-4 block transition-all  border-gray-200 border rounded text-sm focus:border-blue-500 focus:ring-blue-500 w-full"
-        ></textarea> */}
-        <TextEditor />
         <div className="flex gap-2 flex-wrap">
           <Input
-            onChange={() => setPrice(event.target.value)}
             placeholder="فیمت"
             type="text"
             defaultValue="0"
             className="w-60"
+            name="price"
           />
           <Input
-            onChange={() => setPoster(event.target.value)}
             placeholder="عکس محصول"
             type="text"
             className="w-96"
+            name="poster"
           />
           <Input
-            onChange={() => setDiscount(event.target.value)}
             placeholder="تخفیف"
             type="text"
             className="w-60"
             defaultValue="0"
+            name="discount"
           />
         </div>
         <Buttom className="w-fit">ثبت</Buttom>
-        {/* <Input
-          onChange={() => setUserName(event.target.value)}
-          placeholder="نام"
-          type="text"
-        /> */}
       </form>
     </div>
   );
