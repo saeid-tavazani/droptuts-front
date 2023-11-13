@@ -34,7 +34,7 @@ export default function Index() {
             Cookies.remove(jsonData.cookieTokenName);
           });
       } else {
-        navigate("signin");
+        navigate("/admin/panel/signin");
       }
     }
   }, []);

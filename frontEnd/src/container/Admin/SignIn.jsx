@@ -22,7 +22,7 @@ export default function SignIn() {
   const cookie = Cookies.get(jsonData.cookieTokenName);
   useEffect(() => {
     if (cookie || user) {
-      navigate("/admin/panel/signin");
+      navigate("/admin/panel");
     }
   }, []);
 
@@ -58,7 +58,7 @@ export default function SignIn() {
               progress: undefined,
               theme: "light",
             });
-            navigate("admin/panel/signin");
+            navigate("/admin/panel");
           } else {
             setError(true);
             toast.error("رمز عبور و یا ایمیل اشتباه است", {
