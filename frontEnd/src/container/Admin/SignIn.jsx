@@ -5,11 +5,11 @@ import { ToastContainer, toast } from "react-toastify";
 import Cookies from "js-cookie";
 import jsonData from "../../assets/jsonData.json";
 import axios from "../../assets/axios/Axios";
-import { userInfo } from "../../store/Admin/userSlice";
+import { userInfo } from "../../store/userSlice";
 import Loding from "../../components/UI/Loding";
 import Button from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
-import { setToken } from "../../store/Admin/token";
+import { setToken } from "../../store/token";
 export default function SignIn() {
   const [loding, setLoding] = useState(false);
   const [error, setError] = useState(false);

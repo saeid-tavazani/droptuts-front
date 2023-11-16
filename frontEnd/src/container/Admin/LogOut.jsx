@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { userInfo } from "../../store/Admin/userSlice";
+import { userInfo } from "../../store/userSlice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -10,6 +10,6 @@ export default function LogOut() {
   useEffect(() => {
     Cookies.remove(jsonData.cookieTokenName);
     dispatch(userInfo(null));
-    navigate("/admin/panel/signin");
+    navigate("/");
   }, []);
 }

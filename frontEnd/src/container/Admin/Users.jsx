@@ -10,7 +10,7 @@ import UsersAdd from "../../components/Admin/Users/UsersAdd";
 import UsersList from "../../components/Admin/Users/UsersList";
 
 export default function Users() {
-  const users = useSelector((state) => state.users.value);
+  const users = useSelector((state) => state.adminUsers.value);
   const token = useSelector((state) => state.token.value);
   const dispatch = useDispatch();
 
