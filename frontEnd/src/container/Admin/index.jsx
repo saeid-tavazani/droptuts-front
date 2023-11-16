@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { userInfo } from "../../store/userSlice";
-import { setToken } from "../../store/token";
+import { userInfo } from "../../store/Admin/userSlice";
+import { setToken } from "../../store/Admin/token";
 import { useEffect } from "react";
 import Aside from "../../components/Admin/Index/Aside";
 import Header from "../../components/Admin/Index/Header";

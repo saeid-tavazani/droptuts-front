@@ -2,7 +2,7 @@ import Table from "../../UI/Table";
 import { AiOutlineDelete, AiFillLock, AiFillUnlock } from "react-icons/ai";
 import axios from "../../../assets/axios/Axios";
 import { useDispatch } from "react-redux";
-import { usersInfo } from "../../../store/usersSlice";
+import { usersInfo } from "../../../store/Admin/usersSlice";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function UsersList({ data, token }) {

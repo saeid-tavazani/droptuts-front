@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { usersInfo } from "../../store/usersSlice";
+import { usersInfo } from "../../store/Admin/usersSlice";
 import axios from "../../assets/axios/Axios";
 import LodingPage from "../../components/UI/LodingPage";
 import Tabs from "../../components/UI/Tabs";
