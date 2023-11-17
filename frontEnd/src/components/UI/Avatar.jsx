@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { LiaUserEditSolid } from "react-icons/lia";
+import { LiaUserEditSolid, LiaCashRegisterSolid } from "react-icons/lia";
 import { BiLogOut, BiUserCircle, BiLogIn } from "react-icons/bi";
-
+import { MdOutlineManageAccounts } from "react-icons/md";
 export default function Avatar({ user }) {
   const dataLogin = [
     {
@@ -12,10 +12,9 @@ export default function Avatar({ user }) {
     {
       text: "ثبت نام",
       href: "register",
-      icon: "",
+      icon: <LiaCashRegisterSolid size={20} />,
     },
   ];
-
   const dataUser = [
     {
       text: "خروج",
@@ -24,10 +23,16 @@ export default function Avatar({ user }) {
     },
     {
       text: "ویرایش حساب کاربری",
-      href: "editprofile",
+      href: "/panel/editprofile",
       icon: <LiaUserEditSolid size={20} />,
     },
+    {
+      text: "حساب کاربری",
+      href: "/panel",
+      icon: <MdOutlineManageAccounts size={20} />,
+    },
   ];
+  const list = user ? dataUser : dataLogin;
 
   return (
     <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
@@ -43,7 +48,7 @@ export default function Avatar({ user }) {
             alt={user.name}
           />
         ) : (
-          <BiUserCircle size={50} />
+          <BiUserCircle size="38px" />
         )}
       </button>
 
@@ -61,27 +66,16 @@ export default function Avatar({ user }) {
           ""
         )}
         <div className="mt-2 py-2 first:pt-0 last:pb-0">
-          {user
-            ? dataUser.map((item, index) => (
-                <Link
-                  key={index}
-                  to={item.href}
-                  className="flex items-center gap-2 py-3 px-3"
-                >
-                  {item.icon}
-                  {item.text}
-                </Link>
-              ))
-            : dataLogin.map((item, index) => (
-                <Link
-                  key={index}
-                  to={item.href}
-                  className="flex items-center gap-2 py-3 px-3"
-                >
-                  {item.icon}
-                  {item.text}
-                </Link>
-              ))}
+          {list.map((item, index) => (
+            <Link
+              key={index}
+              to={item.href}
+              className="flex items-center gap-2 p-3 text-sm"
+            >
+              {item.icon}
+              {item.text}
+            </Link>
+          ))}
         </div>
       </div>
     </div>
