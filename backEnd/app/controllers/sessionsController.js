@@ -8,17 +8,17 @@ exports.newSession = (req, res, next) => {
     selectUser([email])
       .then((user) => {
         if (
-          user.length &&
-          verifyPass(password, user[0].password) &&
-          user[0].status == 1
+          user &&
+          verifyPass(password, user.password) &&
+          user.status == "active"
         ) {
-          delete user[0].password;
+          delete user.password;
           res.send({
-            data: user[0],
+            data: user,
             success: true,
             code: 200,
             message: "success",
-            token: TokenService.sing(user[0]),
+            token: TokenService.sing(user),
           });
         } else {
           res.send({

@@ -12,7 +12,6 @@ import LodingPage from "../components/UI/LodingPage";
 
 export default function Index() {
   const user = useSelector((state) => state.user.value);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -26,15 +25,15 @@ export default function Index() {
               dispatch(userInfo(response.data.data));
               dispatch(setToken(cookie));
             } else {
-              navigate("signin");
+              navigate("/signin");
             }
           })
           .catch((error) => {
-            navigate("signin");
+            navigate("/signin");
             Cookies.remove(jsonData.cookieTokenName);
           });
       } else {
-        navigate("/panel/signin");
+        navigate("/signin");
       }
     }
   }, []);

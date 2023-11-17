@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.post(
   "/",
-  validator([emailValidator().notEmpty(), passValidator().optional()]),
+  validator([emailValidator().notEmpty(), passValidator().notEmpty()]),
   newSession
 );
 router.get("/verify", [auth], verifyToken);
