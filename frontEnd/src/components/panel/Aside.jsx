@@ -9,25 +9,25 @@ export default function Aside({ user }) {
       href: "/",
       Text: "سایت",
       icon: <BsGlobe2 size={20} />,
-      access: "*",
+      access: ["admin", "author", "user"],
     },
     {
       href: "/panel",
       Text: "داشبورد",
       icon: <AiOutlineHome size={20} />,
-      access: "*",
+      access: ["admin", "author", "user"],
     },
     {
       href: "users",
       Text: "کاربران",
       icon: <FiUsers size={20} />,
-      access: "admin",
+      access: ["admin"],
     },
     {
       href: "products",
       Text: "محصولات",
       icon: <BsShop size={20} />,
-      access: "*",
+      access: ["admin", "author"],
     },
   ];
 
@@ -41,19 +41,20 @@ export default function Aside({ user }) {
         data-hs-accordion-always-open
       >
         <ul className="space-y-1.5">
-          {data.map(
-            (item, index) =>
-              (item.access == "*" || user.role == "admin") && (
-                <li key={index}>
-                  <Link
-                    className="flex items-center gap-x-2 py-2 px-2.5 bg-gray-100 text-sm text-slate-700 rounded-md hover:bg-gray-100"
-                    to={item.href}
-                  >
-                    {item.icon}
-                    {item.Text}
-                  </Link>
-                </li>
-              )
+          {data.map((item, index) =>
+            item.access.includes(user.role) ? (
+              <li key={index}>
+                <Link
+                  className="flex items-center gap-x-2 py-2 px-2.5 bg-gray-100 text-sm text-slate-700 rounded-md hover:bg-gray-100"
+                  to={item.href}
+                >
+                  {" "}
+                  {item.icon} {item.Text}{" "}
+                </Link>{" "}
+              </li>
+            ) : (
+              ""
+            )
           )}
         </ul>
       </nav>

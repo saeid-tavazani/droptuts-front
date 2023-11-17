@@ -6,13 +6,12 @@ import { usersInfo } from "../../store/usersSlice";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function UsersList({ data, token }) {
-  const thead = ["id", "name", "email", "role", "picture", "date", "phone"];
+  const thead = ["id", "name", "email", "role", "date", "phone"];
   const keysValues = [
     { value: "id", type: "text" },
-    { value: "full_name", type: "text" },
+    { value: "name", type: "text" },
     { value: "email", type: "text" },
     { value: "role", type: "text" },
-    { value: "picture", type: "img" },
     { value: "create_at", type: "date" },
     { value: "phone", type: "text" },
   ];
@@ -82,7 +81,7 @@ export default function UsersList({ data, token }) {
     );
     return html;
   };
-
+  console.log(data);
   return (
     <>
       <ToastContainer

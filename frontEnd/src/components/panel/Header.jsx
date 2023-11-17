@@ -7,7 +7,7 @@ export default function Header({ siteName, user }) {
   const data = [
     {
       text: "خروج",
-      href: "logout",
+      href: "/logout",
       icon: <BiLogOut size={20} />,
     },
     {
