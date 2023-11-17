@@ -10,7 +10,7 @@ import axios from "../assets/axios/Axios";
 import jsonData from "../assets/jsonData.json";
 import LodingPage from "../components/UI/LodingPage";
 
-export default function Index() {
+export default function Panel() {
   const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();

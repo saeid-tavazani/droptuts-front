@@ -12,6 +12,7 @@ import Input from "../components/UI/Input";
 import { setToken } from "../store/token";
 import validator from "validator";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 export default function SignIn() {
   const [loding, setLoding] = useState(false);
   const [error, setError] = useState(false);
@@ -143,16 +144,22 @@ export default function SignIn() {
             />
             منا بخاطر بسبار
           </label>
+
           <Button type="submit">
             {loding ? (
               <>
-                {" "}
                 {"ورود"} <Loding />
               </>
             ) : (
               "ورود"
             )}
           </Button>
+          <Link
+            className="text-sm flex items-center gap-2 cursor-pointer text-blue-500 underline"
+            to="/register"
+          >
+            ثبت نام
+          </Link>
         </form>
       </div>
     </section>
