@@ -1,5 +1,5 @@
-import Navbar from "./components/Site/Navbar/Navbar";
-import Products from "./components/Site/Products";
+import Navbar from "./components/Navbar/Navbar";
+import Products from "./components/Products";
 export default function App() {
   return (
     <>

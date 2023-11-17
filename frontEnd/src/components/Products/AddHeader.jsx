@@ -1,9 +1,9 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { useState, useEffect } from "react";
-import Input from "../../UI/Input";
+import Input from "../UI/Input";
 import { GrAddCircle } from "react-icons/gr";
 import { LuDelete } from "react-icons/lu";
-import Button from "../../UI/Button";
+import Button from "../UI/Button";
 export default function AddHeader() {
   const [educations, setEducations] = useState([
     {

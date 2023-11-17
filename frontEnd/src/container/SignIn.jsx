@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Cookies from "js-cookie";
-import jsonData from "../../assets/jsonData.json";
-import axios from "../../assets/axios/Axios";
-import { userInfo } from "../../store/userSlice";
-import Loding from "../../components/UI/Loding";
-import Button from "../../components/UI/Button";
-import Input from "../../components/UI/Input";
-import { setToken } from "../../store/token";
+import jsonData from "../assets/jsonData.json";
+import axios from "../assets/axios/Axios";
+import { userInfo } from "../store/userSlice";
+import Loding from "../components/UI/Loding";
+import Button from "../components/UI/Button";
+import Input from "../components/UI/Input";
+import { setToken } from "../store/token";
 export default function SignIn() {
   const [loding, setLoding] = useState(false);
   const [error, setError] = useState(false);
@@ -19,7 +19,7 @@ export default function SignIn() {
   const cookie = Cookies.get(jsonData.cookieTokenName);
   useEffect(() => {
     if (cookie || user) {
-      navigate("/admin/panel");
+      navigate("/panel");
     }
   }, []);
 
@@ -61,7 +61,7 @@ export default function SignIn() {
               progress: undefined,
               theme: "light",
             });
-            navigate("/admin/panel");
+            navigate("/panel");
           } else {
             setError(true);
             toast.error("رمز عبور و یا ایمیل اشتباه است", {

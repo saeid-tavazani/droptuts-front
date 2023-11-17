@@ -1,9 +1,9 @@
-import Input from "../../UI/Input";
-import Buttom from "../../UI/Button";
-import axios from "../../../assets/axios/Axios";
+import Input from "../UI/Input";
+import Buttom from "../UI/Button";
+import axios from "../../assets/axios/Axios";
 import { useDispatch } from "react-redux";
-import { products as productsData } from "../../../store/productsSlice";
-import TextEditor from "../../UI/TextEditor";
+import { products as productsData } from "../../store/productsSlice";
+import TextEditor from "../UI/TextEditor";
 import { useRef, useState } from "react";
 import AddHeader from "./AddHeader";
 

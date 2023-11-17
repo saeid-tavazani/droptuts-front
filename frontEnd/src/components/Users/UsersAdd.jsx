@@ -1,9 +1,9 @@
-import Input from "../../UI/Input";
-import axios from "../../../assets/axios/Axios";
-import Button from "../../UI/Button";
+import Input from "../UI/Input";
+import axios from "../../assets/axios/Axios";
+import Button from "../UI/Button";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { usersInfo } from "../../../store/Admin/usersSlice";
+import { usersInfo } from "../../store/usersSlice";
 
 export default function UsersAdd({ token }) {
   const dispatch = useDispatch();

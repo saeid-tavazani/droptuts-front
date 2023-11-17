@@ -3,7 +3,7 @@ const users = require("./users");
 const products = require("./products");
 
 module.exports = (app) => {
-  app.use("/app/admin/api/v1/session", sessionRouter);
-  app.use("/app/admin/api/v1/users", users);
-  app.use("/app/admin/api/v1/products", products);
+  app.use("/app/droptuts/api/v1/session", sessionRouter);
+  app.use("/app/droptuts/api/v1/users", users);
+  app.use("/app/droptuts/api/v1/products", products);
 };

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { BiLogOut, BiUserCircle } from "react-icons/bi";
 import { FcMenu } from "react-icons/fc";
 import { LiaUserEditSolid } from "react-icons/lia";
-import Avatar from "../../UI/Avatar";
+import Avatar from "../UI/Avatar";
 export default function Header({ siteName, user }) {
   const data = [
     {

@@ -6,15 +6,15 @@ import { BsShop, BsGlobe2 } from "react-icons/bs";
 export default function Aside({ user }) {
   const data = [
     {
-      href: "/admin/panel",
-      Text: "داشبورد",
-      icon: <AiOutlineHome size={20} />,
-      access: "*",
-    },
-    {
       href: "/",
       Text: "سایت",
       icon: <BsGlobe2 size={20} />,
+      access: "*",
+    },
+    {
+      href: "panel",
+      Text: "داشبورد",
+      icon: <AiOutlineHome size={20} />,
       access: "*",
     },
     {

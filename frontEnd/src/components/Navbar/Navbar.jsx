@@ -1,20 +1,20 @@
-import styles from "../../../assets/style/style.js";
+import styles from "../../assets/style/style.js";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { useSelector } from "react-redux";
-import Avatar from "../../UI/Avatar.jsx";
+import Avatar from "../UI/Avatar.jsx";
 import { BiLogIn } from "react-icons/bi";
 export default function Navbar() {
   const user = useSelector((state) => state.user.value);
   const data = [
     {
       text: "ورود",
-      href: "login",
+      href: "signin",
       icon: <BiLogIn size={20} />,
     },
     {
       text: "ثبت نام",
-      href: "Register",
+      href: "register",
       icon: "",
     },
   ];

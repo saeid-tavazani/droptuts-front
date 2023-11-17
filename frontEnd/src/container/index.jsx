@@ -1,14 +1,14 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { userInfo } from "../../store/userSlice";
-import { setToken } from "../../store/token";
+import { userInfo } from "../store/userSlice";
+import { setToken } from "../store/token";
 import { useEffect } from "react";
-import Aside from "../../components/Admin/Index/Aside";
-import Header from "../../components/Admin/Index/Header";
+import Aside from "../components/panel/Aside";
+import Header from "../components/panel/Header";
 import Cookies from "js-cookie";
-import axios from "../../assets/axios/Axios";
-import jsonData from "../../assets/jsonData.json";
-import LodingPage from "../../components/UI/LodingPage";
+import axios from "../assets/axios/Axios";
+import jsonData from "../assets/jsonData.json";
+import LodingPage from "../components/UI/LodingPage";
 
 export default function Index() {
   const user = useSelector((state) => state.user.value);
@@ -34,7 +34,7 @@ export default function Index() {
             Cookies.remove(jsonData.cookieTokenName);
           });
       } else {
-        navigate("/admin/panel/signin");
+        navigate("/panel/signin");
       }
     }
   }, []);

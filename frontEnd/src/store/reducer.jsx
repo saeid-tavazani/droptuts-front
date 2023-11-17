@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./userSlice";
-import usersSlice from "./Admin/usersSlice";
+import usersSlice from "./usersSlice";
 import token from "./token";
 import productsSlice from "./productsSlice";
 

@@ -1,8 +1,8 @@
-import styles from "../../../assets/style/style";
-import axios from "../../../assets/axios/Axios";
+import styles from "../../assets/style/style";
+import axios from "../../assets/axios/Axios";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { products as productsData } from "../../../store/productsSlice";
+import { products as productsData } from "../../store/productsSlice";
 import Cart from "./Cart";
 export default function index() {
   const products = useSelector((state) => state.products.value);
