@@ -2,7 +2,6 @@ import Navbar from "./components/Navbar/Navbar";
 import Products from "./components/Products";
 import axios from "./assets/axios/Axios";
 import { useEffect } from "react";
-
 import { useSelector, useDispatch } from "react-redux";
 import { userInfo } from "./store/userSlice";
 import Cookies from "js-cookie";
