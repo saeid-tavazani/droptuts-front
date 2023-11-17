@@ -1,24 +1,57 @@
 import { useSelector } from "react-redux";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
-import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "../assets/axios/Axios";
 import { useNavigate } from "react-router-dom";
+import validator from "validator";
 
 export default function EditProfile() {
   const user = useSelector((state) => state.user.value);
   const token = useSelector((state) => state.token.value);
-
   const navigate = useNavigate();
+
+  const handlerError = (err) => {
+    toast.error(err, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+  const successHandler = (err) => {
+    toast.success(err, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setTimeout(() => {
+      navigate("/logout");
+    }, 2000);
+  };
+
   const formSubmitPass = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const currentPassword = formData.get("currentPassword");
     const password = formData.get("password");
     const password2 = formData.get("password2");
-    if (password.trim() === password2.trim()) {
-      if (currentPassword.trim().length) {
+    if (
+      validator.isLength(validator.trim(password), { max: 16, min: 8 }) &&
+      validator.trim(password2) == validator.trim(password)
+    ) {
+      if (
+        validator.isLength(validator.trim(currentPassword), { max: 16, min: 8 })
+      ) {
         axios
           .put(
             "/users/update/pass",
@@ -27,33 +60,14 @@ export default function EditProfile() {
           )
           .then((res) => {
             if (res.data.success) {
-              toast.success("رمز با موفقیت تغییر یافت", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-              setTimeout(() => {
-                navigate("/logout");
-              }, 2000);
+              successHandler("رمز با موفقیت تغییر یافت");
             }
           });
+      } else {
+        handlerError("رمز عبور خداقل 8 کاراکتر و حد اکثر 16 کاراکتر باشد");
       }
     } else {
-      toast.error("رمز عبور و تکرار ان یک نیست", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      handlerError("رمز عبور و تکرار ان یک نیست");
     }
   };
 
@@ -61,58 +75,31 @@ export default function EditProfile() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const email = formData.get("email");
-    const picture = formData.get("picture");
+    const name = formData.get("name");
+    const family = formData.get("family");
     const phone = formData.get("phone");
     if (
-      picture.trim() !== "" &&
-      phone.trim() !== "" &&
-      email.trim().includes("@")
+      validator.isEmail(email) &&
+      validator.isLength(name, { min: 3, max: 25 }) &&
+      validator.isLength(phone, { min: 11, max: 11 }) &&
+      validator.isLength(family, { min: 0, max: 35 })
     ) {
       axios
         .put(
           "/users/update/info",
-          { id: user.id, picture, phone, email },
+          { id: user.id, name, family, phone, email },
           { headers: { authorization: token } }
         )
         .then((res) => {
+          console.log(res);
           if (res.data.success) {
-            toast.success("اطلاعات با موفقیت تغییر یافت", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-            setTimeout(() => {
-              navigate("/logout");
-            }, 2000);
+            successHandler("اطلاعات با موفقیت تغییر یافت");
           } else {
-            toast.error("مقدار نامعتبر", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            handlerError("مقدار نامعتبر");
           }
         });
     } else {
-      toast.error("مقدار نامعتبر", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      handlerError("مقدار نامعتبر");
     }
   };
 
@@ -133,13 +120,23 @@ export default function EditProfile() {
       <div className="flex flex-wrap gap-5 justify-evenly">
         <form onSubmit={formSubmit} className="flex flex-col gap-4">
           <label>
-            <span className="text-sm">عکس حساب کاربری</span>
+            <span className="text-sm">تام</span>
             <Input
               dir="ltr"
               className="w-96"
               type="text"
-              defaultValue={user.picture}
-              name="picture"
+              defaultValue={user.name.split(" ")[0]}
+              name="name"
+            />
+          </label>
+          <label>
+            <span className="text-sm">نام خانوادگی</span>
+            <Input
+              dir="ltr"
+              className="w-96"
+              type="text"
+              defaultValue={user.name.split(" ")[1]}
+              name="family"
             />
           </label>
           <label>
@@ -171,21 +168,11 @@ export default function EditProfile() {
           </label>
           <label>
             <span className="text-sm">رمز جدید</span>
-            <Input
-              onChange={() => setPassword(event.target.value)}
-              className="w-96"
-              type="password"
-              name="password"
-            />
+            <Input className="w-96" type="password" name="password" />
           </label>
           <label>
             <span className="text-sm">تکرار رمز جدید</span>
-            <Input
-              onChange={() => setPassword2(event.target.value)}
-              className="w-96"
-              type="password"
-              name="password2"
-            />
+            <Input className="w-96" type="password" name="password2" />
           </label>
           <Button className="w-fit">ثبت</Button>
         </form>

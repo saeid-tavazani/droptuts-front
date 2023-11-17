@@ -49,8 +49,8 @@ exports.updateUserPass = (req, res, next) => {
 
 exports.updateUserInfo = (req, res, next) => {
   try {
-    const { phone, picture, email, id } = req.body;
-    updateUserInfo([picture, email, phone, Number(id)])
+    const { phone, family, name, email, id } = req.body;
+    updateUserInfo([name, family, email, phone, Number(id)])
       .then((rows) => {
         if (rows.affectedRows) {
           res.send({ success: true, code: 200, message: "success" });

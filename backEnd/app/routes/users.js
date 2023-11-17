@@ -45,11 +45,13 @@ router.put(
       emailValidator().notEmpty(),
       phoneNumberValidator().notEmpty(),
       idValidator().notEmpty(),
-      customMadeValidator("picture").notEmpty(),
+      customMadeValidator("family").optional(),
+      customMadeValidator("name").notEmpty(),
     ]),
   ],
   updateUserInfo
 );
+
 router.put(
   "/update/pass",
   [
