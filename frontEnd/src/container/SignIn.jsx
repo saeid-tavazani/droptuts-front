@@ -60,7 +60,6 @@ export default function SignIn() {
           password: inputPassword.trim(),
         })
         .then((res) => {
-          console.log(res.data);
           if (res.data.success) {
             dispatch(userInfo(res.data.data));
             dispatch(setToken(res.data.token));

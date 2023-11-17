@@ -107,7 +107,7 @@ exports.deleteUsers = (req, res, next) => {
 exports.editStatus = (req, res, next) => {
   try {
     const { id, status } = req.body;
-    changeStatus([status == 1 ? 0 : 1, id])
+    changeStatus([status, id])
       .then((rows) => {
         if (rows.affectedRows) {
           selectAllUser().then((users) => {

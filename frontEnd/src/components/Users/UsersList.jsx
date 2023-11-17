@@ -64,16 +64,16 @@ export default function UsersList({ data, token }) {
           onClick={() => deleteUser(value.id)}
           size={25}
         />
-        {value.status ? (
+        {value.status == "active" ? (
           <AiFillUnlock
             cursor="pointer"
-            onClick={() => changeStatus(value.id, value.status)}
+            onClick={() => changeStatus(value.id, "inactive")}
             size={25}
           />
         ) : (
           <AiFillLock
             cursor="pointer"
-            onClick={() => changeStatus(value.id, value.status)}
+            onClick={() => changeStatus(value.id, "active")}
             size={25}
           />
         )}
@@ -81,7 +81,6 @@ export default function UsersList({ data, token }) {
     );
     return html;
   };
-  console.log(data);
   return (
     <>
       <ToastContainer
