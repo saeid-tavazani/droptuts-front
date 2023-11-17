@@ -133,8 +133,8 @@ exports.editStatus = (req, res, next) => {
 
 exports.addUsertypeA = (req, res, next) => {
   try {
-    const { name, email, password, picture, phone } = req.body;
-    addUser([name, email, generateHashPss(password), "author", picture, phone])
+    const { name, family, email, password, phone } = req.body;
+    addUser([name, family, email, generateHashPss(password), "author", phone])
       .then((rows) => {
         selectAllUser().then((users) => {
           res.send({ data: users, ...success });

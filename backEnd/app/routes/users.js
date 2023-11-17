@@ -69,11 +69,10 @@ router.post(
   [
     auth,
     validator([
-      customMadeValidator("name").notEmpty(),
       emailValidator().notEmpty(),
-      passValidator().notEmpty(),
-      customMadeValidator("picture").optional(),
       phoneNumberValidator().notEmpty(),
+      customMadeValidator("family").optional(),
+      customMadeValidator("name").notEmpty(),
     ]),
   ],
   addUsertypeA

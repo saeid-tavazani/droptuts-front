@@ -41,7 +41,7 @@ export default function Users() {
         {
           tabs: (
             <>
-              <AiOutlineUserAdd size={20} /> {"اضافه کرن کاربر"}
+              <AiOutlineUserAdd size={20} /> {"اضافه کرن نویسنده"}
             </>
           ),
           body: <UsersAdd token={token} />,
