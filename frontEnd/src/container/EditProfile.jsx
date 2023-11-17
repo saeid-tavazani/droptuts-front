@@ -10,7 +10,6 @@ export default function EditProfile() {
   const user = useSelector((state) => state.user.value);
   const token = useSelector((state) => state.token.value);
   const navigate = useNavigate();
-
   const handlerError = (err) => {
     toast.error(err, {
       position: "top-center",
@@ -91,7 +90,6 @@ export default function EditProfile() {
           { headers: { authorization: token } }
         )
         .then((res) => {
-          console.log(res);
           if (res.data.success) {
             successHandler("اطلاعات با موفقیت تغییر یافت");
           } else {

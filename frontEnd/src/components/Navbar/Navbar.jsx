@@ -3,21 +3,9 @@ import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import Avatar from "../UI/Avatar.jsx";
-import { BiLogIn } from "react-icons/bi";
 export default function Navbar() {
   const user = useSelector((state) => state.user.value);
-  const data = [
-    {
-      text: "ورود",
-      href: "signin",
-      icon: <BiLogIn size={20} />,
-    },
-    {
-      text: "ثبت نام",
-      href: "register",
-      icon: "",
-    },
-  ];
+
   const navigation = [
     { text: "صفحه اصلی", href: "/" },
     { text: "آخرین دوره ها", href: "/" },
@@ -45,7 +33,7 @@ export default function Navbar() {
             ))}
           </div>
         </div>
-        <Avatar user={user} list={data} />
+        <Avatar user={user} />
         <button className="hidden">
           <FiMenu size={20} />
         </button>

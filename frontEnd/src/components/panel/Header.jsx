@@ -1,22 +1,7 @@
 import { Link } from "react-router-dom";
-import { BiLogOut, BiUserCircle } from "react-icons/bi";
 import { FcMenu } from "react-icons/fc";
-import { LiaUserEditSolid } from "react-icons/lia";
 import Avatar from "../UI/Avatar";
 export default function Header({ siteName, user }) {
-  const data = [
-    {
-      text: "خروج",
-      href: "/logout",
-      icon: <BiLogOut size={20} />,
-    },
-    {
-      text: "ویرایش حساب کاربری",
-      href: "editprofile",
-      icon: <LiaUserEditSolid size={20} />,
-    },
-  ];
-
   return (
     <header className="sticky top-0 left-0 flex flex-wrap sm:justify-end sm:flex-nowrap z-[48] w-full bg-white border-b text-sm py-2.5 sm:py-4">
       <nav
@@ -40,7 +25,7 @@ export default function Header({ siteName, user }) {
             {siteName}
           </Link>
 
-          <Avatar list={data} user={user} />
+          <Avatar user={user} />
 
           {/* <div className="flex flex-row items-center justify-end gap-2">
             <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
