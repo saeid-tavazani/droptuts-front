@@ -76,15 +76,5 @@ router.post(
   ],
   addUsertypeA
 );
-router.post(
-  "/new",
-  validator([
-    customMadeValidator("name").notEmpty(),
-    emailValidator().notEmpty(),
-    passValidator().notEmpty(),
-    phoneNumberValidator().notEmpty(),
-  ]),
-  addUsertypeB
-);
 
 module.exports = router;

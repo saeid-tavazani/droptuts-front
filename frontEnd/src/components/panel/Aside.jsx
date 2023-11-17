@@ -12,7 +12,7 @@ export default function Aside({ user }) {
       access: "*",
     },
     {
-      href: "panel",
+      href: "/panel",
       Text: "داشبورد",
       icon: <AiOutlineHome size={20} />,
       access: "*",

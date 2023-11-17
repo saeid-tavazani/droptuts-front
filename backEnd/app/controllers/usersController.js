@@ -22,7 +22,7 @@ exports.updateUserPass = (req, res, next) => {
     const { currentPassword, password, id } = req.body;
     selectUserId([id])
       .then((user) => {
-        if (verifyPass(currentPassword, user[0].password)) {
+        if (verifyPass(currentPassword, user.password)) {
           updateUserPassword([generateHashPss(password), id]).then((rows) => {
             if (rows.changedRows) {
               res.send(successNot);
