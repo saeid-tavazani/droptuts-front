@@ -12,21 +12,7 @@ export default function ProductsAdd({ id, token }) {
   const editorRef = useRef(null);
   const dispatch = useDispatch();
   // const [headings, setHeadings] = useState([]);
-  const [educations, setEducations] = useState([
-    {
-      headlines: "فصل 1",
-      data: [
-        { type: "file", tite: "java", time: "12:57", link: "https://132456" },
-        {
-          type: "video",
-          tite: "javascript",
-          time: "18:57",
-          link: "https://132456",
-        },
-        { type: "file", tite: "html", time: "15:57", link: "https://132456" },
-      ],
-    },
-  ]);
+  const [educations, setEducations] = useState([]);
 
   const addProduct = (e) => {
     e.preventDefault();
@@ -51,16 +37,22 @@ export default function ProductsAdd({ id, token }) {
   return (
     <div>
       <form onSubmit={addProduct} className="flex gap-3 flex-wrap items-center">
-        <Input
-          placeholder="عنوان"
-          type="text"
-          className="w-[500px]"
-          name="title"
-        />
-        <Select className="w-52" name="category">
-          <option value="file">file</option>
-          <option value="course">course</option>
-        </Select>
+        <label>
+          عنوان
+          <Input
+            placeholder="عنوان"
+            type="text"
+            className="w-[500px]"
+            name="title"
+          />
+        </label>
+        <label>
+          دسته بندی
+          <Select className="w-52" name="category">
+            <option value="file">فایل</option>
+            <option value="course">دوره آموزشی</option>
+          </Select>
+        </label>
         <TextEditor
           name="description"
           onInit={(evt, editor) => (editorRef.current = editor)}
@@ -95,27 +87,16 @@ export default function ProductsAdd({ id, token }) {
           />
         </label>
 
-        <AddHeader educations={educations} setEducations={setEducations} />
+        <label>
+          وضعیت
+          <Select name="status">
+            <option value="performing"> در حال برگذاری</option>
+            <option value="end"> به پایان رسیده</option>
+            <option value="update">درحال بروز رسانی</option>
+          </Select>
+        </label>
 
-        <div className="my-2 flex flex-col gap-2 w-full">
-          <label className="w-fit flex items-center gap-2 whitespace-nowrap cursor-pointer">
-            <Input
-              type="radio"
-              name="status"
-              value="performing"
-              defaultChecked
-            />
-            در حال برگذاری
-          </label>
-          <label className="w-fit flex items-center gap-2 whitespace-nowrap cursor-pointer">
-            <Input type="radio" name="status" value="end" />
-            به پایان رسیده
-          </label>{" "}
-          <label className="w-fit flex items-center gap-2 whitespace-nowrap cursor-pointer">
-            <Input type="radio" name="status" value="update" />
-            درحال بروز رسانی
-          </label>
-        </div>
+        <AddHeader educations={educations} setEducations={setEducations} />
 
         <div className="w-full">
           <Buttom className="w-fit h-fit">ثبت</Buttom>
