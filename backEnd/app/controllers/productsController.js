@@ -43,21 +43,18 @@ exports.getProductActive = (req, res, next) => {
 
 exports.addProduct = (req, res, next) => {
   try {
-    let { id, description, title } = req.body;
-    let body = req.body;
-    addProduct([
+    const {
+      id,
       title,
+      category,
       description,
-      body.price ? body.price : "NULL",
-      body.poster ? body.poster : "NULL",
-      Number(id),
-      body.discount ? body.discount : "NULL",
-      body.headings
-        ? body.headings
-        : JSON.stringify([
-            { time: 20, isFree: true, name: "test1", url: "http://" },
-          ]),
-    ])
+      status,
+      price,
+      poster,
+      discount,
+    } = req.body;
+
+    addProduct([title, description, price, poster, status])
       .then((result) => {
         selectAll().then((response) => {
           res.send({

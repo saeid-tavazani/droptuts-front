@@ -7,6 +7,7 @@ import TextEditor from "../UI/TextEditor";
 import { useRef, useState } from "react";
 import AddHeader from "./AddHeader";
 import Select from "../UI/Select";
+import SwitchToggle from "../UI/SwitchToggle";
 
 export default function ProductsAdd({ id, token }) {
   const editorRef = useRef(null);
@@ -22,11 +23,12 @@ export default function ProductsAdd({ id, token }) {
     const discount = formData.get("discount");
     const title = formData.get("title");
     const category = formData.get("category");
+    const status = formData.get("status");
     const description = editorRef.current.getContent();
     axios
       .post(
         "/products/new",
-        { id, title, description, price, poster, discount },
+        { id, title, category, description, status, price, poster, discount },
         { headers: { authorization: token } }
       )
       .then((response) => {
@@ -53,6 +55,7 @@ export default function ProductsAdd({ id, token }) {
             <option value="course">دوره آموزشی</option>
           </Select>
         </label>
+        <SwitchToggle />
         <TextEditor
           name="description"
           onInit={(evt, editor) => (editorRef.current = editor)}
