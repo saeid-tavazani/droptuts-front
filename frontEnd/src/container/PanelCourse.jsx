@@ -31,7 +31,7 @@ export default function Products() {
         {
           tabs: (
             <>
-              <PiUsersBold size={20} /> {"لیست محصولات"}
+              <PiUsersBold size={20} /> {"لیست دوره ها"}
             </>
           ),
           body: products ? (
@@ -43,7 +43,7 @@ export default function Products() {
         {
           tabs: (
             <>
-              <AiOutlineUserAdd size={20} /> {"اضافه کرن محصول"}
+              <AiOutlineUserAdd size={20} /> {"اضافه کرن محصول جدید"}
             </>
           ),
           body: <ProductsAdd id={user.id} token={token} />,

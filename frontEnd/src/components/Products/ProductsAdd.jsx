@@ -6,11 +6,27 @@ import { products as productsData } from "../../store/productsSlice";
 import TextEditor from "../UI/TextEditor";
 import { useRef, useState } from "react";
 import AddHeader from "./AddHeader";
+import Select from "../UI/Select";
 
 export default function ProductsAdd({ id, token }) {
   const editorRef = useRef(null);
   const dispatch = useDispatch();
-  const [headings, setHeadings] = useState([]);
+  // const [headings, setHeadings] = useState([]);
+  const [educations, setEducations] = useState([
+    {
+      headlines: "فصل 1",
+      data: [
+        { type: "file", tite: "java", time: "12:57", link: "https://132456" },
+        {
+          type: "video",
+          tite: "javascript",
+          time: "18:57",
+          link: "https://132456",
+        },
+        { type: "file", tite: "html", time: "15:57", link: "https://132456" },
+      ],
+    },
+  ]);
 
   const addProduct = (e) => {
     e.preventDefault();
@@ -19,6 +35,7 @@ export default function ProductsAdd({ id, token }) {
     const poster = formData.get("poster");
     const discount = formData.get("discount");
     const title = formData.get("title");
+    const category = formData.get("category");
     const description = editorRef.current.getContent();
     axios
       .post(
@@ -40,6 +57,10 @@ export default function ProductsAdd({ id, token }) {
           className="w-[500px]"
           name="title"
         />
+        <Select className="w-52" name="category">
+          <option value="file">file</option>
+          <option value="course">course</option>
+        </Select>
         <TextEditor
           name="description"
           onInit={(evt, editor) => (editorRef.current = editor)}
@@ -74,7 +95,7 @@ export default function ProductsAdd({ id, token }) {
           />
         </label>
 
-        <AddHeader />
+        <AddHeader educations={educations} setEducations={setEducations} />
 
         <div className="my-2 flex flex-col gap-2 w-full">
           <label className="w-fit flex items-center gap-2 whitespace-nowrap cursor-pointer">

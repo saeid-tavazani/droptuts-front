@@ -25,7 +25,7 @@ export default function Aside({ user }) {
     },
     {
       href: "products",
-      Text: "محصولات",
+      Text: "دوره های آموزشی",
       icon: <BsShop size={20} />,
       access: ["admin", "author"],
     },

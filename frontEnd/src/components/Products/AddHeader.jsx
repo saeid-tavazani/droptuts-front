@@ -4,24 +4,9 @@ import Input from "../UI/Input";
 import { GrAddCircle } from "react-icons/gr";
 import { LuDelete } from "react-icons/lu";
 import Button from "../UI/Button";
-export default function AddHeader() {
-  const [educations, setEducations] = useState([
-    {
-      headlines: "فصل 1",
-      data: [
-        { type: "file", tite: "java", time: "12:57", link: "https://132456" },
-        {
-          type: "video",
-          tite: "javascript",
-          time: "18:57",
-          link: "https://132456",
-        },
-        { type: "file", tite: "html", time: "15:57", link: "https://132456" },
-      ],
-    },
-  ]);
+import Select from "../UI/Select";
+export default function AddHeader({ educations, setEducations }) {
   const [update, setUpdate] = useState(0);
-
   const changeVlueEducationData = (e, index, index2, type) => {
     const newData = educations;
     newData[index].data[index2][type] = e.target.value;
@@ -46,8 +31,6 @@ export default function AddHeader() {
     setEducations(newData);
     setUpdate(update + 1);
   };
-  // },[newData])
-
   const addHeaderEducation = (e) => {
     e.preventDefault();
     let newData = educations;
@@ -146,16 +129,17 @@ export default function AddHeader() {
                         }
                         defaultValue={values.tite}
                       />
-                      <select
+
+                      <Select
                         onChange={() =>
                           changeVlueEducationData(event, index, id, "type")
                         }
                         defaultValue={values.type}
-                        className="p-3  pe-9 block  border-gray-950 w-32 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 "
+                        className="w-32"
                       >
                         <option value="file">file</option>
                         <option value="video">video</option>
-                      </select>
+                      </Select>
                     </div>
                   ))}
                 </div>

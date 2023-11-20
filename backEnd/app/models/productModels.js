@@ -2,7 +2,7 @@ const connection = require("../../database/mysql");
 
 const selectAll = async () => {
   const [rows] = await connection.query(
-    "SELECT products.id, products.title, products.description, products.price, products.poster, products.status, products.active, products.create_at, products.update_at, products.discount,products.headings, users.full_name AS author FROM products LEFT JOIN users ON products.author_id = users.id"
+    "SELECT * FROM `products` WHERE `active`=1 AND category='course'"
   );
   return rows;
 };

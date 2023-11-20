@@ -1,7 +1,7 @@
 import "./styles/LodingPage.css";
 export default function LodingPage() {
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full mt-28 h-full flex items-center justify-center">
       <div className="book">
         <div className="inner">
           <div className="left"></div>
