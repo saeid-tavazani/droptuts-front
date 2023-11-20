@@ -3,20 +3,31 @@
 @tailwind utilities;
 
 @font-face {
-  @font-face {
-    font-family: "IRANSansDN";
-    src: local("font"), url("../Font/font.woff");
-    font-display: block;
-  }
+  font-family: "IRANSansDN";
+  src: local("font"), url("../Font/font.woff");
+  font-display: block;
 }
+
 * {
   font-family: "IRANSansDN";
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 :focus {
   outline: none;
 }
 .tox-statusbar__branding {
   display: none;
+}
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #2564ebc7;
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
 }
