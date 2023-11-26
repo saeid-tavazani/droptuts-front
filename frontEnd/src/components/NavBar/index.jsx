@@ -4,6 +4,7 @@ import Logo from "../UI/Logo";
 import NavBarAvatar from "./NavBarAvatar";
 import NavBarMobile from "./NavBarMobile";
 import NavBarMobileButton from "./NavBarMobileButton";
+import style from "../../assets/styles/style";
 
 const navigation = [
   { name: "خانه", href: "/", current: true },
@@ -18,17 +19,15 @@ function classNames(...classes) {
 
 export default function NavBar() {
   return (
-    <Disclosure as="nav" className="bg-white border-b">
+    <Disclosure as="nav" className="bg-white border-b  h-16">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 flex justify-between lg:px-8">
-            <div className=" flex h-16 items-center sm:justify-between">
-              <div className="flex  gap-4 justify-center  items-center">
-                <div className="flex  items-center">
+          <div className={`flex justify-between ${style.container}`}>
+            <div className="flex w-full h-16 items-center justify-between">
+              <div className="flex h-full items-center gap-4">
+                <div className="flex  gap-4 justify-center  items-center">
                   <Logo className="h-11 w-auto" />
-                </div>
-                <div className="hidden sm:ml-6 sm:flex items-center ">
-                  <div className="flex gap-4">
+                  <div className="gap-4 hidden sm:flex items-center ">
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
@@ -46,15 +45,11 @@ export default function NavBar() {
                     ))}
                   </div>
                 </div>
-              </div>
-              <div className=" inset-y-0 right-0 flex items-center sm:hidden">
+
                 <NavBarMobileButton open={open} />
               </div>
 
-              <div className="  flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0">
-                {/* Profile dropdown */}
-                <NavBarAvatar classNames={classNames} />
-              </div>
+              <NavBarAvatar classNames={classNames} />
             </div>
           </div>
 
