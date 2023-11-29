@@ -3,7 +3,10 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+
 import App from "../App";
+
+import { Login } from "../container/Container";
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -12,6 +15,7 @@ const Router = createBrowserRouter(
         <Route path="products" element={<PanelProducts />} />
       </Route> */}
       <Route path="/" element={<App />} />
+      <Route path="login" element={<Login />} />
     </>
   )
 );
