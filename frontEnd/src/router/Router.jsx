@@ -6,7 +6,7 @@ import {
 
 import App from "../App";
 
-import { Login } from "../container/Container";
+import { Login, Register } from "../container/Container";
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +16,7 @@ const Router = createBrowserRouter(
       </Route> */}
       <Route path="/" element={<App />} />
       <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
     </>
   )
 );

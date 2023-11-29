@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Logo from "../components/UI/Logo";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 
