@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
+import Checkbox from "../components/UI/Checkbox";
 
 export default function Login() {
   return (
@@ -44,7 +45,12 @@ export default function Login() {
             </div>
             <Input name="password" type="password" required />
           </div>
-
+          <div>
+            <label className="flex items-center gap-2 text-sm">
+              <Checkbox name="" />
+              منو بخاطر بسپار
+            </label>
+          </div>
           <Button type="submit">ورود</Button>
         </form>
 
