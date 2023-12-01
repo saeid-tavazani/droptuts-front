@@ -19,14 +19,14 @@ function classNames(...classes) {
 
 export default function NavBar() {
   return (
-    <Disclosure as="nav" className="bg-white border-b  h-16">
+    <Disclosure as="nav" className="bg-white border-b h-16 shadow-sm">
       {({ open }) => (
         <>
           <div className={`flex justify-between ${style.container}`}>
             <div className="flex w-full h-16 items-center justify-between">
               <div className="flex h-full items-center gap-4">
                 <div className="flex  gap-4 justify-center  items-center">
-                  <Logo className="h-11 w-auto" />
+                  <Logo />
                   <div className="gap-4 hidden sm:flex items-center ">
                     {navigation.map((item) => (
                       <Link
