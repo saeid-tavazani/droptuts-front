@@ -25,7 +25,7 @@ export default function Panel() {
             ? { width: "20rem", paddingLeft: "32px", paddingRight: "32px" }
             : { width: 0 }
         }
-        className="w-80 animate-sidebar-navigation py-8 transition-width h-full bg-white shadow-sm border-l hidden lg:flex flex-col"
+        className="w-64 min-w-[256px] animate-sidebar-navigation py-8 transition-width h-full bg-white shadow-sm border-l hidden lg:flex flex-col lg:relative"
       >
         <Logo />
       </motion.aside>
