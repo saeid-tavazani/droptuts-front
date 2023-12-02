@@ -1,3 +1,3 @@
-# React + Vite + express.js
+# React + Vite + express.js + mysql
 
 درحال توسعه
