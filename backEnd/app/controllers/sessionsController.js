@@ -32,7 +32,6 @@ exports.newSession = (req, res, next) => {
     next(error);
   }
 };
-
 exports.verifyToken = (req, res, next) => {
   try {
     const data = TokenService.decode(req.headers.authorization);
