@@ -4,10 +4,9 @@ const { generateHashPss } = require("../services/PasswordHash");
 exports.newUser = (req, res, next) => {
   try {
     const { email, password, phone, name, family } = req.body;
-
     selectuser([email, phone])
       .then((user) => {
-        if (user.length) {
+        if (user) {
           res.send((errorRequest.message = "user already exists"));
         } else {
           newUser([name, family, email, generateHashPss(password), phone]).then(

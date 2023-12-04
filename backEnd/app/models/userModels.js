@@ -18,10 +18,10 @@ const newUser = async (value) => {
 
 const selectuser = async (value) => {
   const [rows] = await connection.query(
-    "SELECT id FROM `users` WHERE `email`=? OR phone=?",
+    "SELECT id FROM `users` WHERE `email`=? OR phone=? AND `status`='active' LIMIT 1",
     value
   );
-  return rows;
+  return rows[0];
 };
 
 module.exports = {
