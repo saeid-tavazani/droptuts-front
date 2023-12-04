@@ -6,7 +6,7 @@ import {
 
 import App from "../App";
 
-import { Login, Register, Panel } from "../container/Container";
+import { Login, Register, Panel, LogOut } from "../container/Container";
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +17,7 @@ const Router = createBrowserRouter(
       <Route path="/" element={<App />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
+      <Route path="logout" element={<LogOut />} />
     </>
   )
 );
