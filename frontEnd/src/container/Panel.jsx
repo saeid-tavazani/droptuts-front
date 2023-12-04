@@ -19,15 +19,13 @@ export default function Panel() {
   return (
     <main ref={main} className="w-full h-screen flex ">
       <motion.aside
-        initial={open ? { width: 0 } : { width: "20rem" }}
-        animate={
-          open
-            ? { width: "20rem", paddingLeft: "32px", paddingRight: "32px" }
-            : { width: 0 }
-        }
-        className="w-64 min-w-[256px] animate-sidebar-navigation py-8 transition-width h-full bg-white shadow-sm border-l hidden lg:flex flex-col lg:relative"
+        initial={open ? { width: "0px" } : { width: "20rem" }}
+        animate={open ? { width: "20rem" } : { width: "0px" }}
+        className="animate-sidebar-navigation overflow-hidden transition-width h-full bg-white shadow-sm border-l hidden lg:flex lg:relative"
       >
-        <Logo />
+        <div className="py-8 px-8 w-full h-full flex flex-col">
+          <Logo />
+        </div>
       </motion.aside>
       <article className="w-full h-full ">
         <Disclosure as="nav" className="bg-white border-b h-16 shadow-sm ">
