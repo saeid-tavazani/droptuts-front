@@ -1,6 +1,6 @@
 const TokenService = require("../services/TokenService");
 const { verifyPass } = require("../services/PasswordHash");
-const { selectUserActive, selectuser } = require("../models/userModels");
+const { selectUserActive } = require("../models/userModels");
 const { gravatar } = require("../services/Gravatar");
 exports.newSession = (req, res, next) => {
   try {
@@ -40,8 +40,8 @@ exports.newSession = (req, res, next) => {
 exports.verifyToken = (req, res, next) => {
   try {
     const data = TokenService.decode(req.headers.authorization);
-    selectuser([data.email, ""]).then((user) => {
-      if (verifyPass(data.password, user.password)) {
+    selectUserActive([data.email]).then((user) => {
+      if (data.password === user.password) {
         delete user.password;
         const picture = gravatar(data.email);
         res.send({

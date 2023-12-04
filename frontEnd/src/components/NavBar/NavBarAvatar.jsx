@@ -1,10 +1,46 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import axios from "../../assets/axios/";
+import jsonData from "../../assets/jsonData.json";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { userInfo } from "../../store/userSlice";
+import { setToken } from "../../store/token";
 
 export default function NavBarAvatar({ classNames }) {
+  const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const cookie = Cookies.get(jsonData.cookieTokenName);
+    if (user == null) {
+      if (cookie) {
+        axios
+          .get("/session/verify", { headers: { authorization: cookie } })
+          .then((response) => {
+            if (response.data.success) {
+              console.log(response.data);
+              dispatch(userInfo(response.data.data));
+              dispatch(setToken(cookie));
+            } else {
+              alert(5555);
+              Cookies.remove(jsonData.cookieTokenName);
+            }
+          })
+          .catch((error) => {
+            alert(444);
+            console.log(error);
+            Cookies.remove(jsonData.cookieTokenName);
+          });
+      }
+    }
+  }, [user]);
+
   return (
-    <div className="  h-fit  ">
+    <div className="h-fit">
       <Menu as="div" className="relative">
         <div>
           <Menu.Button className="relative flex rounded-full bg-blue-600 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 ">
