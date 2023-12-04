@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
-
 import Router from "./router/Router";
 import store from "./store/reducer";
 import("./assets/styles/index.css");
 import("./assets/Font/font.woff");
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

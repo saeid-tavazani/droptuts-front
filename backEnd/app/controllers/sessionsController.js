@@ -1,11 +1,11 @@
 const TokenService = require("../services/TokenService");
 const { verifyPass } = require("../services/PasswordHash");
-const { selectUser } = require("../models/userModels");
+const { selectUserActive } = require("../models/userModels");
 const { gravatar } = require("../services/Gravatar");
 exports.newSession = (req, res, next) => {
   try {
     const { email, password } = req.body;
-    selectUser([email])
+    selectUserActive([email])
       .then((user) => {
         if (user && verifyPass(password, user.password)) {
           delete user.password;
@@ -35,7 +35,7 @@ exports.newSession = (req, res, next) => {
 exports.verifyToken = (req, res, next) => {
   try {
     const data = TokenService.decode(req.headers.authorization);
-    selectUser(data.email).then((user) => {
+    selectUserActive(data.email).then((user) => {
       if (user.status == "active") {
         delete user.password;
         const picture = gravatar(data.email);
