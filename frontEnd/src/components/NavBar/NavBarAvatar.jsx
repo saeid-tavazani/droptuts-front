@@ -70,7 +70,7 @@ export default function NavBarAvatar({ classNames }) {
     <div className="h-fit">
       <Menu as="div" className="relative">
         <div>
-          <Menu.Button className="relative flex rounded-full bg-blue-600 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 ">
+          <Menu.Button className="relative flex rounded-full bg-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 ">
             {user ? (
               <img
                 className="h-8 w-8 rounded-full"
@@ -78,7 +78,7 @@ export default function NavBarAvatar({ classNames }) {
                 alt={user.name}
               />
             ) : (
-              <BiUserCircle />
+              <BiUserCircle className="text-gray-600" size={35} />
             )}
           </Menu.Button>
         </div>
