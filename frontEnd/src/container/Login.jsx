@@ -53,7 +53,6 @@ export default function Login() {
           </div>
           <Button type="submit">ورود</Button>
         </form>
-
         <Link
           to=""
           className="font-semibold text-sm text-indigo-600 hover:text-indigo-500"
