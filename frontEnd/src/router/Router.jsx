@@ -6,13 +6,19 @@ import {
 
 import App from "../App";
 
-import { Login, Register, Panel, LogOut } from "../container/Container";
+import {
+  Login,
+  Register,
+  Panel,
+  LogOut,
+  ProductsPanel,
+} from "../container/Container";
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="panel" element={<Panel />}>
-        {/* <Route path="products" element={<PanelProducts />} /> */}
+        <Route path="products" element={<ProductsPanel />} />
       </Route>
       <Route path="/" element={<App />} />
       <Route path="login" element={<Login />} />

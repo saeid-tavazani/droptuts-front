@@ -1,16 +1,26 @@
 import { useState, useRef, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import AsidePanel from "../components/Panel/AsidePanel";
 import HederPanel from "../components/Panel/HederPanel";
 import { useSelector } from "react-redux";
+import Cookies from "js-cookie";
+import jsonData from "../assets/jsonData.json";
 
 export default function Panel() {
   const [open, setOpen] = useState(false);
   const main = useRef();
+  const user = useSelector((state) => state.user.value);
+  const navigate = useNavigate();
+  const cookie = Cookies.get(jsonData.cookieTokenName);
   useEffect(() => {
     main.current.offsetWidth > 1024 ? setOpen(true) : "";
   }, []);
-  const user = useSelector((state) => state.user.value);
+
+  useEffect(() => {
+    if (!(cookie || user)) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <main ref={main} className="w-full h-screen flex ">
