@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Table from "../../components/UI/Table";
 import { useNavigate } from "react-router-dom";
-
 export default function ProductsPanel() {
   const navigate = useNavigate();
   const token = useSelector((state) => state.token.value);

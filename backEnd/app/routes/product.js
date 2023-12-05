@@ -7,7 +7,7 @@ const {
 
 const router = express.Router();
 
-router.post("/", [authAdmin], newProduct);
+router.post("/new", [authAdmin], newProduct);
 router.get("/admin", [authAdmin], selectAllProduct);
 
 module.exports = router;

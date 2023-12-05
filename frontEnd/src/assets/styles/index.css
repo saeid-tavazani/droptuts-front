@@ -36,3 +36,11 @@
   height: 6px;
   border-radius: 3px;
 }
+
+input:checked ~ .dot {
+  transform: translateX(100%);
+}
+
+input:checked + div {
+  background-color: #4f46e5;
+}
