@@ -1,21 +1,20 @@
 const { addProduct } = require("../models/productModels");
 const { errorRequest, successNot } = require("../services/ResponseStatusCodes");
-const { generateHashPss } = require("../services/PasswordHash");
-exports.newUser = (req, res, next) => {
+exports.newProduct = (req, res, next) => {
   try {
     const { email, password, phone, name, family } = req.body;
-    selectuser([email, phone])
+    addProduct([email, phone])
       .then((user) => {
         if (user) {
-          res.send((errorRequest.message = "user already exists"));
+          //   res.send((errorRequest.message = "user already exists"));
         } else {
-          newUser([name, family, email, generateHashPss(password), phone]).then(
-            (row) => {
-              if (row.affectedRows) {
-                res.send(successNot);
-              }
-            }
-          );
+          //   newUser([name, family, email, generateHashPss(password), phone]).then(
+          //     (row) => {
+          //       if (row.affectedRows) {
+          //         res.send(successNot);
+          //       }
+          //     }
+          //   );
         }
       })
       .catch((error) => {

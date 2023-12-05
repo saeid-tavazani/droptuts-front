@@ -1,12 +1,9 @@
 const express = require("express");
 const auth = require("../middlewares/auth");
-const {
-  newSession,
-  verifyToken,
-} = require("../controllers/sessionsController");
+const { newProduct } = require("../controllers/productController");
 
 const router = express.Router();
 
-router.post("/", [auth], verifyToken);
+router.post("/", [auth], newProduct);
 
 module.exports = router;
