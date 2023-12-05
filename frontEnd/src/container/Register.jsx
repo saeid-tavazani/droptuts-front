@@ -7,7 +7,7 @@ import jsonData from "../assets/jsonData.json";
 import axios from "../assets/axios/";
 import { error } from "../assets/handlerToastify";
 import { isPassword, isEmail } from "../assets/validator";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Toastify from "../components/UI/Toastify";
 
