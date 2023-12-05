@@ -10,7 +10,6 @@ export default function Panel() {
   const main = useRef();
   useEffect(() => {
     main.current.offsetWidth > 1024 ? setOpen(true) : "";
-    console.log(456);
   }, []);
 
   function classNames(...classes) {

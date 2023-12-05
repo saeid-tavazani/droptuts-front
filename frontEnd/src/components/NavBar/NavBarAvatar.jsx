@@ -52,7 +52,6 @@ export default function NavBarAvatar({ classNames }) {
           .get("/session/verify", { headers: { authorization: cookie } })
           .then((response) => {
             if (response.data.success) {
-              console.log(response.data);
               dispatch(userInfo(response.data.data));
               dispatch(setToken(cookie));
             } else {

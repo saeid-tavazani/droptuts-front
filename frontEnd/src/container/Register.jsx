@@ -35,7 +35,6 @@ export default function Register() {
         axios
           .post("/users/new", { email, password, phone, name, family })
           .then((res) => {
-            console.log(res.data);
             if (res.data.success) {
               navigate("/login");
             }
