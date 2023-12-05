@@ -2,7 +2,8 @@ const { addProduct } = require("../models/productModels");
 const { errorRequest, successNot } = require("../services/ResponseStatusCodes");
 exports.newProduct = (req, res, next) => {
   try {
-    const { email, password, phone, name, family } = req.body;
+    const { title, password, phone, name, family } = req.body;
+
     addProduct([email, phone])
       .then((user) => {
         if (user) {

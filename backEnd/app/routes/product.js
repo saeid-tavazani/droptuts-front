@@ -1,9 +1,9 @@
 const express = require("express");
-const auth = require("../middlewares/auth");
+const { authAdmin } = require("../middlewares/auth");
 const { newProduct } = require("../controllers/productController");
 
 const router = express.Router();
 
-router.post("/", [auth], newProduct);
+router.post("/", [authAdmin], newProduct);
 
 module.exports = router;
