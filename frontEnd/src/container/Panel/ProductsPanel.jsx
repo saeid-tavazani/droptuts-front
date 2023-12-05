@@ -33,9 +33,6 @@ export default function ProductsPanel() {
       axios
         .get("/product/admin", { headers: { authorization: token } })
         .then((response) => {
-          console.log("====================================");
-          console.log(response.data);
-          console.log("====================================");
           if (response.data.success) {
             setProducts(response.data.data);
           }
