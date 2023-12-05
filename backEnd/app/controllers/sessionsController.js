@@ -10,6 +10,7 @@ exports.newSession = (req, res, next) => {
         if (user && verifyPass(password, user.password)) {
           const userPassword = user.password;
           const userEmail = user.email;
+          const userRole = user.role;
           delete user.password;
           const picture = gravatar(user.email);
           res.send({
@@ -20,6 +21,7 @@ exports.newSession = (req, res, next) => {
             token: TokenService.sing({
               password: userPassword,
               email: userEmail,
+              role: userRole,
             }),
           });
         } else {
