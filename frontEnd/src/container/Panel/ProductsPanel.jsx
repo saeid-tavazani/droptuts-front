@@ -3,8 +3,10 @@ import axios from "../../assets/axios/";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Table from "../../components/UI/Table";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductsPanel() {
+  const navigate = useNavigate();
   const token = useSelector((state) => state.token.value);
   const [products, setProducts] = useState(null);
   const thead = [
@@ -43,7 +45,9 @@ export default function ProductsPanel() {
     <div className="w-full rounded-xl p-5 bg-white shadow-sm border flex flex-col gap-7">
       <div className="flex items-center justify-between gap-2">
         <h1 className="whitespace-nowrap">محصولات شما</h1>
-        <Button className="w-fit">افزودن محصول جدید</Button>
+        <Button onClick={() => navigate("/panel/addproduct")} className="w-fit">
+          افزودن محصول جدید
+        </Button>
       </div>
       <div className="w-full overflow-x-auto">
         {products && products.length ? (

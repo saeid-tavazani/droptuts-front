@@ -12,6 +12,7 @@ import {
   Panel,
   LogOut,
   ProductsPanel,
+  AddProduct,
 } from "../container/Container";
 
 const Router = createBrowserRouter(
@@ -19,6 +20,7 @@ const Router = createBrowserRouter(
     <>
       <Route path="panel" element={<Panel />}>
         <Route path="products" element={<ProductsPanel />} />
+        <Route path="addproduct" element={<AddProduct />} />
       </Route>
       <Route path="/" element={<App />} />
       <Route path="login" element={<Login />} />
