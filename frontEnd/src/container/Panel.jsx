@@ -27,7 +27,7 @@ export default function Panel() {
       <AsidePanel status={open} user={user} />
       <article className="w-full h-full ">
         <HederPanel open={open} setOpen={setOpen} />
-        <div className="overflow-y-auto w-full h-[calc(100%-4rem)]">
+        <div className="overflow-y-auto w-full h-[calc(100%-4rem)] p-8">
           <Outlet />
         </div>
       </article>
