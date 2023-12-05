@@ -3,7 +3,7 @@ export default function Table({ titles, data, keys }) {
     const d = new Date(date);
     return new Intl.DateTimeFormat("fa-IR").format(d);
   };
-
+  const style = "p-1.5 text-gray-500 text-start whitespace-nowrap";
   const createView = (type, value) => {
     switch (type) {
       case "text":
@@ -21,11 +21,11 @@ export default function Table({ titles, data, keys }) {
     }
   };
   return (
-    <table className="border-collapse border border-slate-500">
-      <thead>
+    <table className="min-w-full divide-y divide-gray-200">
+      <thead className="bg-gray-50 h-14">
         <tr>
           {titles.map((item, index) => (
-            <th key={index} className="border border-slate-600">
+            <th key={index} className={style}>
               {item}
             </th>
           ))}
@@ -33,13 +33,13 @@ export default function Table({ titles, data, keys }) {
       </thead>
       <tbody>
         {data.map((item, index) => (
-          <tr key={item.id}>
-            <td className="border border-slate-700">{index + 1}</td>
+          <tr
+            key={item.id}
+            className={(index + 1) % 2 == 0 ? "bg-gray-50" : ""}
+          >
+            <td className={style}>{index + 1}</td>
             {keys.map((keysValues, index2) => (
-              <td
-                key={index + "" + item.id + index2}
-                className="border border-slate-700"
-              >
+              <td key={index + "" + item.id + index2} className={style}>
                 {createView(keysValues.type, item[keysValues.value])}
               </td>
             ))}

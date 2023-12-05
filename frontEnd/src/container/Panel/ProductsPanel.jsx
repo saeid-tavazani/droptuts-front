@@ -48,11 +48,13 @@ export default function ProductsPanel() {
         <h1 className="whitespace-nowrap">محصولات شما</h1>
         <Button className="w-fit">افزودن محصول جدید</Button>
       </div>
-      {products && products.length ? (
-        <Table data={products} keys={keysValues} titles={thead} />
-      ) : (
-        <p>محصولی یافت نشد</p>
-      )}
+      <div className="w-full overflow-x-auto">
+        {products && products.length ? (
+          <Table data={products} keys={keysValues} titles={thead} />
+        ) : (
+          <p>محصولی یافت نشد</p>
+        )}
+      </div>
     </div>
   );
 }
