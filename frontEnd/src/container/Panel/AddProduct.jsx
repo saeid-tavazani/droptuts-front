@@ -7,19 +7,14 @@ export default function AddProduct() {
   return (
     <div className="w-full rounded-xl p-5 bg-white shadow-sm border flex flex-col gap-7">
       <form className="flex gap-3 flex-wrap">
-        <label>
-          عنوان
-          <Input type="text" name="title" />
-        </label>
+        <Input type="text" label="عنوان" name="title" />
+
         <TextEditor
           name="description"
           onInit={(evt, editor) => (editorRef.current = editor)}
         />
 
-        <label>
-          وضعیت
-          <ToggleBtn />
-        </label>
+        <ToggleBtn label="وضعیت" />
       </form>
     </div>
   );
