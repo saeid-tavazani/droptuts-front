@@ -65,43 +65,20 @@ export default function Login() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6 mb-3" onSubmit={userLogin}>
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              ایمیل
-            </label>
-            <div className="mt-2">
-              <Input name="email" type="email" required />
-            </div>
-          </div>
+          <Input name="email" label=" ایمیل" type="email" required />
 
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
+            <div className="text-sm mb-1">
+              <Link
+                to=""
+                className="font-semibold text-sm text-indigo-600 hover:text-indigo-500"
               >
-                رمز عبور
-              </label>
-              <div className="text-sm">
-                <Link
-                  to=""
-                  className="font-semibold text-sm text-indigo-600 hover:text-indigo-500"
-                >
-                  فراموشی رمز عبور
-                </Link>
-              </div>
+                فراموشی رمز عبور
+              </Link>
             </div>
-            <Input name="password" type="password" required />
+            <Input label="رمز عبور" name="password" type="password" required />
           </div>
-          <div>
-            <label className="flex items-center gap-2 text-sm">
-              <Checkbox name="remember" />
-              منو بخاطر بسپار
-            </label>
-          </div>
+          <Checkbox name="remember" label="منو بخاطر بسپار" />
           <Button type="submit">ورود</Button>
         </form>
         <Link

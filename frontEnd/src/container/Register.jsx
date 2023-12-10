@@ -58,65 +58,27 @@ export default function Register() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={registerUser} className="space-y-6 mb-3">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              ایمیل
-            </label>
-            <div className="mt-2">
-              <Input name="email" type="email" required />
-            </div>
-          </div>
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              شماره تلفن
-            </label>
-            <div className="mt-2">
-              <Input name="phone" type="text" />
-            </div>
+          <Input name="email" type="email" label="ایمیل" required />
+
+          <Input name="phone" label="شماره تلفن" type="text" />
+
+          <div className="grid grid-cols-2 mt-2 items-center gap-4 w-full">
+            <Input
+              name="name"
+              className="col-span-1"
+              label="نام"
+              type="text"
+              required
+            />
+            <Input
+              name="family"
+              className="col-span-1"
+              label="نام خانوادگی"
+              type="text"
+            />
           </div>
 
-          <div className="grid grid-cols-2 items-center gap-4">
-            <div className="col-span-1">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                نام
-              </label>
-              <div className="mt-2">
-                <Input name="name" type="text" required />
-              </div>
-            </div>
-            <div className="col-span-1">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                نام خانوادگی
-              </label>
-              <div className="mt-2">
-                <Input name="family" type="text" />
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                رمز عبور
-              </label>
-            </div>
-            <Input name="password" type="password" required />
-          </div>
+          <Input name="password" label="رمز عبور" type="password" required />
 
           <Button type="submit">ثبت نام</Button>
         </form>
