@@ -1,4 +1,8 @@
-const { addProduct, selectAll } = require("../models/productModels");
+const {
+  addProduct,
+  selectAll,
+  selectPassword,
+} = require("../models/productModels");
 const {
   errorRequest,
   successAdd,
@@ -32,9 +36,20 @@ exports.selectAllProduct = (req, res, next) => {
         res.send({ ...success, data: rows });
       })
       .catch((error) => {
-        console.log("====================================");
-        console.log(error);
-        console.log("====================================");
+        res.send(errorRequest);
+      });
+  } catch (console) {
+    next(error);
+  }
+};
+
+exports.selectPassword = (req, res, next) => {
+  try {
+    selectPassword()
+      .then((rows) => {
+        res.send({ ...success, data: rows });
+      })
+      .catch((error) => {
         res.send(errorRequest);
       });
   } catch (console) {

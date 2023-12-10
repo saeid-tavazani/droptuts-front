@@ -15,7 +15,13 @@ const selectAll = async () => {
   return rows;
 };
 
+const selectPassword = async () => {
+  const [rows] = await connection.query("SELECT * FROM `password_files`");
+  return rows;
+};
+
 module.exports = {
   addProduct,
   selectAll,
+  selectPassword,
 };
