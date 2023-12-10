@@ -1,5 +1,9 @@
 import { Input as InputM } from "@material-tailwind/react";
 
-export default function Input({ type, label, className = "w-full", ...res }) {
-  return <InputM {...res} color="blue" label={label} className={className} />;
+export default function Input({ type, label, className = null, ...res }) {
+  return (
+    <div className={className}>
+      <InputM {...res} color="blue" label={label} />
+    </div>
+  );
 }

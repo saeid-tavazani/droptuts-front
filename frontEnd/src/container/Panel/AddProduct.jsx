@@ -15,9 +15,6 @@ export default function AddProduct() {
       axios
         .get("/product/pass", { headers: { authorization: token } })
         .then((res) => {
-          console.log("====================================");
-          console.log(res);
-          console.log("====================================");
           if (res.data.success) {
             setPass(res.data.data);
           }
@@ -25,18 +22,50 @@ export default function AddProduct() {
     }
   }, [token]);
 
+  const addProductHandler = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const title = formData.get("title");
+    const status = formData.get("status");
+    const pass = formData.get("pass");
+    const link = formData.get("link");
+    const price = formData.get("price");
+    const poster = formData.get("poster");
+    const discount = formData.get("discount");
+    const description = editorRef.current.getContent();
+    axios
+      .post(
+        "/products/new",
+        { title, description, status, price, poster, discount, link, pass },
+        { headers: { authorization: token } }
+      )
+      .then((response) => {
+        console.log("====================================");
+        console.log(response);
+        console.log("====================================");
+        if (response.success) {
+          alert(56465);
+        }
+        // dispatch(productsData(response.data.data));
+      });
+  };
+
   return (
     <div className="w-full rounded-xl p-5 bg-white shadow-sm border flex flex-col gap-7">
-      <form className="flex gap-3 flex-wrap">
-        <Input type="text" label="عنوان" name="title" />
+      <form onSubmit={addProductHandler} className="flex gap-3 flex-wrap">
+        <Input className="w-full" type="text" label="عنوان" name="title" />
 
         <TextEditor
           name="description"
           onInit={(evt, editor) => (editorRef.current = editor)}
         />
 
-        <ToggleBtn label="وضعیت" />
-        {pass ? <SelectInput list={pass} /> : ""}
+        <ToggleBtn label="وضعیت" name="status" />
+        {pass ? <SelectInput name="pass" list={pass} /> : ""}
+        <Input type="text" label="لینک دانلود" name="link" />
+        <Input type="text" label="قیمت" name="price" defaultValue={0} />
+        <Input type="text" label="تخفیف" name="discount" defaultValue={0} />
+        <Input type="text" label="لینک تصویر محصول" name="poster" />
       </form>
     </div>
   );
