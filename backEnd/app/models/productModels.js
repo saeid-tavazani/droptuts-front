@@ -2,7 +2,7 @@ const connection = require("../../database/mysql");
 
 const addProduct = async (value) => {
   const [rows] = await connection.query(
-    "INSERT INTO `products`(`title`, `description`, `status`, `pass_file`, `link`, `price`, `poster`, `create_at`, `update_at`) VALUES (?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO `products`(`title`, `description`, `status`, `pass_file`, `link`, `price` , `discount` , `poster`) VALUES (?,?,?,?,?,?,?,?)",
     value
   );
   return rows;
@@ -10,7 +10,7 @@ const addProduct = async (value) => {
 
 const selectAll = async () => {
   const [rows] = await connection.query(
-    "SELECT `id`, `title`, `description`, `status`, `pass_file`, `link`, `price`, `poster`, `create_at`, `update_at` FROM `products` WHERE NOT `status`='deleted';"
+    "SELECT `id`, `title`, `description`, `status`, `pass_file`, `link`, `price` , `discount` , `poster`, `create_at`, `update_at` FROM `products` WHERE NOT `status`='deleted';"
   );
   return rows;
 };

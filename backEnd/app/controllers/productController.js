@@ -11,7 +11,16 @@ const {
 exports.newProduct = (req, res, next) => {
   try {
     const { title, description, pass, link, price, poster, status } = req.body;
-    addProduct([title, description, status, pass, link, price, poster])
+    addProduct([
+      title,
+      description,
+      status,
+      pass,
+      link,
+      price,
+      discount,
+      poster,
+    ])
       .then((user) => {
         if (user.affectedRows) {
           selectAll().then((row) => {
