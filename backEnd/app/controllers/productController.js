@@ -10,7 +10,8 @@ const {
 } = require("../services/ResponseStatusCodes");
 exports.newProduct = (req, res, next) => {
   try {
-    const { title, description, pass, link, price, poster, status } = req.body;
+    const { title, description, discount, pass, link, price, poster, status } =
+      req.body;
     addProduct([
       title,
       description,
@@ -33,7 +34,7 @@ exports.newProduct = (req, res, next) => {
       .catch((error) => {
         res.send(errorRequest);
       });
-  } catch (console) {
+  } catch (error) {
     next(error);
   }
 };
