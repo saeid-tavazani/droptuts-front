@@ -34,7 +34,7 @@ export default function NavBarAvatar({ classNames }) {
     },
     {
       text: "ویرایش حساب کاربری",
-      href: "/panel",
+      href: "/panel/Profile",
       icon: <LiaUserEditSolid size={20} />,
     },
     {

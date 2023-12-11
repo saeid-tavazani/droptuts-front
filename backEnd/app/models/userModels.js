@@ -2,7 +2,7 @@ const connection = require("../../database/mysql");
 
 const selectUserActive = async (value) => {
   const [rows] = await connection.query(
-    "SELECT `id`, CONCAT(`first_name`,' ', `last_name`) AS name, `email`, `password`, `role`, `create_at`, `phone`, `status` FROM `users` WHERE `email`=? AND `status`='active' LIMIT 1",
+    "SELECT `id`, `first_name` AS name, `last_name` AS family, `email`, `password`, `role`, `create_at`, `phone`, `status` FROM `users` WHERE `email`=? AND `status`='active' LIMIT 1",
     value
   );
   return rows[0];
@@ -24,8 +24,26 @@ const selectuser = async (value) => {
   return rows[0];
 };
 
+const selectUserId = async (value) => {
+  const [rows] = await connection.query(
+    "SELECT * FROM `users` WHERE id=? LIMIT 1",
+    value
+  );
+  return rows[0];
+};
+
+const updateUser = async (value) => {
+  const [rows] = await connection.query(
+    "UPDATE `users` SET `first_name`=?,`last_name`=?,`email`=?,`phone`=? WHERE id=?",
+    value
+  );
+  return rows[0];
+};
+
 module.exports = {
   selectUserActive,
   newUser,
   selectuser,
+  selectUserId,
+  updateUser,
 };

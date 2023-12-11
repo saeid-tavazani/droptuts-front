@@ -58,14 +58,10 @@ export default function AddProduct() {
         { headers: { authorization: token } }
       )
       .then((response) => {
-        console.log("====================================");
-        console.log(response);
-        console.log("====================================");
         if (response.data.success) {
           dispatch(setProducts(response.data.data));
           navigate("/panel/products");
         }
-        // dispatch(productsData(response.data.data));
       });
   };
 

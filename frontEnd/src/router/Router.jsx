@@ -13,6 +13,7 @@ import {
   LogOut,
   ProductsPanel,
   AddProduct,
+  EditeProfile,
 } from "../container/Container";
 
 const Router = createBrowserRouter(
@@ -21,6 +22,7 @@ const Router = createBrowserRouter(
       <Route path="panel" element={<Panel />}>
         <Route path="products" element={<ProductsPanel />} />
         <Route path="addproduct" element={<AddProduct />} />
+        <Route path="profile" element={<EditeProfile />} />
       </Route>
       <Route path="/" element={<App />} />
       <Route path="login" element={<Login />} />

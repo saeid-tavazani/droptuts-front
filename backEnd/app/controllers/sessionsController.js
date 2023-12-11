@@ -38,6 +38,7 @@ exports.newSession = (req, res, next) => {
         res.send({ code: 501, success: false });
       });
   } catch (error) {
+    logger.error(error);
     next(error);
   }
 };
@@ -64,6 +65,8 @@ exports.verifyToken = (req, res, next) => {
       }
     });
   } catch (error) {
+    logger.error(error);
+
     next(error);
   }
 };

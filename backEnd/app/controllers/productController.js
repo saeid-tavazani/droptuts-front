@@ -62,7 +62,7 @@ exports.selectPassword = (req, res, next) => {
       .catch((error) => {
         res.send(errorRequest);
       });
-  } catch (console) {
+  } catch (error) {
     next(error);
   }
 };
