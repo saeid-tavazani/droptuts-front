@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Cookies from "js-cookie";
 import jsonData from "../../assets/jsonData.json";
 import axios from "../../assets/axios/";
-import { error } from "../../assets/handlerToastify";
+import { error, success } from "../../assets/handlerToastify";
 import { isPassword, isEmail } from "../../assets/validator";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -34,11 +34,13 @@ export default function EditeProfile() {
           { headers: { authorization: token } }
         )
         .then((res) => {
-          console.log("====================================");
-          console.log(res);
-          console.log("====================================");
           if (res.data.success) {
-            navigate("/logout");
+            success("مشخصات تغییر یافت");
+            setTimeout(() => {
+              navigate("/logout");
+            }, 2000);
+          } else {
+            error("متاسفانه مشکلی پیش اومده");
           }
         });
       // } else {

@@ -46,14 +46,7 @@ exports.editUser = (req, res, next) => {
       .then((user) => {
         const tokenData = TokenService.decode(req.headers.authorization);
         if (user && user.email === tokenData.email) {
-          updateUser([
-            name,
-            family,
-            email,
-            // password ? password : user.password,
-            phone,
-            id,
-          ]).then((row) => {
+          updateUser([name, family, email, phone, id]).then((row) => {
             res.send(successNot);
           });
         } else {
