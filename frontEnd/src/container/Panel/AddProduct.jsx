@@ -3,15 +3,20 @@ import TextEditor from "../../components/UI/TextEditor";
 import { useRef, useState, useEffect } from "react";
 import ToggleBtn from "../../components/UI/ToggleBtn";
 import axios from "../../assets/axios/";
-import { useSelector } from "react-redux";
 import SelectInput from "../../components/UI/SelectInput";
 import Button from "../../components/UI/Button";
+import { useSelector, useDispatch } from "react-redux";
+import { setProducts } from "../../store/products";
+import { useNavigate } from "react-router-dom";
 
 export default function AddProduct() {
   const token = useSelector((state) => state.token.value);
   const editorRef = useRef(null);
   const [pass, setPass] = useState(null);
   const [selectedValue, setSelectedValue] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSelectChange = (value) => {
     setSelectedValue(value);
   };
@@ -43,7 +48,7 @@ export default function AddProduct() {
         {
           title,
           description,
-          status,
+          status: status ? "active" : "inactive",
           price,
           poster,
           discount,
@@ -56,8 +61,9 @@ export default function AddProduct() {
         console.log("====================================");
         console.log(response);
         console.log("====================================");
-        if (response.success) {
-          alert(56465);
+        if (response.data.success) {
+          dispatch(setProducts(response.data.data));
+          navigate("/panel/products");
         }
         // dispatch(productsData(response.data.data));
       });

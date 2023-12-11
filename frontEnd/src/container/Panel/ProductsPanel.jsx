@@ -1,13 +1,15 @@
 import Button from "../../components/UI/Button";
 import axios from "../../assets/axios/";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Table from "../../components/UI/Table";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setProducts } from "../../store/products";
 export default function ProductsPanel() {
   const navigate = useNavigate();
   const token = useSelector((state) => state.token.value);
-  const [products, setProducts] = useState(null);
+  const products = useSelector((state) => state.products.value);
+  const dispatch = useDispatch();
   const thead = [
     "ردیف",
     "عنوان",
@@ -37,7 +39,7 @@ export default function ProductsPanel() {
         .get("/product/admin", { headers: { authorization: token } })
         .then((response) => {
           if (response.data.success) {
-            setProducts(response.data.data);
+            dispatch(setProducts(response.data.data));
           }
         });
     }
