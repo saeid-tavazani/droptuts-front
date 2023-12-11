@@ -1,4 +1,4 @@
-const connection = require("../../database/mysql");
+// const connection = require("../../database/mysql");
 
 const selectUserActive = async (value) => {
   const [rows] = await connection.query(
