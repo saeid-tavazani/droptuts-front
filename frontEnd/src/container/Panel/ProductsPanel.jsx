@@ -26,7 +26,7 @@ export default function ProductsPanel() {
     { value: "price", type: "price" },
     { value: "discount", type: "text" },
     { value: "status", type: "text" },
-    { value: "pass_file", type: "text" },
+    { value: "password", type: "text" },
     { value: "create_at", type: "date" },
     { value: "update_at", type: "date" },
     { value: "poster", type: "img" },
@@ -45,7 +45,7 @@ export default function ProductsPanel() {
   return (
     <div className="w-full rounded-xl p-5 bg-white shadow-sm border flex flex-col gap-7">
       <div className="flex items-center justify-between gap-2">
-        <h1 className="whitespace-nowrap">محصولات شما</h1>
+        <h1 className="whitespace-nowrap font-bold">محصولات شما</h1>
         <Button onClick={() => navigate("/panel/addproduct")} className="w-fit">
           افزودن محصول جدید
         </Button>

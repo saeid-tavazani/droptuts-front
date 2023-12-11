@@ -10,7 +10,7 @@ const addProduct = async (value) => {
 
 const selectAll = async () => {
   const [rows] = await connection.query(
-    "SELECT `id`, `title`, `description`, `status`, `pass_file`, `link`, `price` , `discount` , `poster`, `create_at`, `update_at` FROM `products` WHERE NOT `status`='deleted';"
+    "SELECT products.id, products.title, products.description, products.status, products.link, products.price , products.discount , products.poster, products.create_at, products.update_at ,password_files.password FROM products INNER JOIN password_files ON products.pass_file = password_files.id WHERE NOT status='deleted';"
   );
   return rows;
 };
