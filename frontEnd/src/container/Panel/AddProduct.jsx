@@ -32,10 +32,6 @@ export default function AddProduct() {
     const formData = new FormData(event.currentTarget);
     const title = formData.get("title");
     const status = formData.get("status");
-    // const passfile = formData.get("pass");
-    console.log("====================================");
-    console.log(selectedValue);
-    console.log("====================================");
     const link = formData.get("link");
     const price = formData.get("price");
     const poster = formData.get("poster");
