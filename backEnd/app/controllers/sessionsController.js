@@ -9,7 +9,7 @@ exports.newSession = (req, res, next) => {
     selectUserActive([email])
       .then((user) => {
         if (user && verifyPass(password, user.password)) {
-          const userPassword = user.password;
+          const userPassword = user.password; 
           const userEmail = user.email;
           const userRole = user.role;
           delete user.password;
