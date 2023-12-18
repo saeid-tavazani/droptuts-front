@@ -11,6 +11,7 @@ exports.passValidator = () => {
 exports.customMadeValidator = (type) => {
   return body(type).trim();
 };
+
 exports.idValidator = () => {
   return body("id").trim().toInt().isInt();
 };

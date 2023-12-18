@@ -3,6 +3,7 @@ const {
   selectAll,
   selectPassword,
   select,
+  selectId,
 } = require("../models/productModels");
 const {
   errorRequest,
@@ -71,6 +72,20 @@ exports.selectPassword = (req, res, next) => {
 exports.selectProduct = (req, res, next) => {
   try {
     select()
+      .then((rows) => {
+        res.send({ ...success, data: rows });
+      })
+      .catch((error) => {
+        res.send(errorRequest);
+      });
+  } catch (console) {
+    next(error);
+  }
+};
+exports.selectProductId = (req, res, next) => {
+  try {
+    const { id } = req.params;
+    selectId([id])
       .then((rows) => {
         res.send({ ...success, data: rows });
       })

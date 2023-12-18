@@ -5,9 +5,13 @@ const {
   selectAllProduct,
   selectPassword,
   selectProduct,
+  selectProductId,
 } = require("../controllers/productController");
 const validator = require("../middlewares/validator");
-const { customMadeValidator } = require("../services/ValidatorService");
+const {
+  customMadeValidator,
+  idValidator,
+} = require("../services/ValidatorService");
 
 const router = express.Router();
 
@@ -30,6 +34,7 @@ router.post(
 );
 router.get("/admin", [authAdmin], selectAllProduct);
 router.get("/", selectProduct);
+router.get("/:id", selectProductId);
 router.get("/pass", [authAdmin], selectPassword);
 
 module.exports = router;

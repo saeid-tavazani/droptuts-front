@@ -27,9 +27,18 @@ const selectPassword = async () => {
   return rows;
 };
 
+const selectId = async (value) => {
+  const [rows] = await connection.query(
+    "SELECT products.id, products.title, products.description, products.status, products.link, products.price , products.discount , products.poster, products.create_at, products.update_at ,password_files.password FROM products INNER JOIN password_files ON products.pass_file = password_files.id WHERE products.status='active' AND products.id=?;",
+    value
+  );
+  return rows[0];
+};
+
 module.exports = {
   addProduct,
   selectAll,
   selectPassword,
   select,
+  selectId,
 };
