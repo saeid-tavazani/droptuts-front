@@ -1,13 +1,13 @@
-import styles from "../../assets/styles/style";
-import CardProduct from "./CardProduct";
+import styles from "../../assets/styles/style.js";
+import CardProduct from "./CardProduct.jsx";
 import { useEffect } from "react";
-import axius from "../../assets/axios/";
-import { setProducts } from "../../store/products";
+import axius from "../../assets/axios/index.jsx";
+import { setProducts } from "../../store/products.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import Toastify from "../UI/Toastify";
+import Toastify from "../UI/Toastify.jsx";
 import { error } from "../../assets/handlerToastify.js";
 
-export default function Index() {
+export default function Index({ length }) {
   const products = useSelector((state) => state.products.value);
   const dispatch = useDispatch();
 

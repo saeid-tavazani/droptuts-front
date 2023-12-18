@@ -1,10 +1,10 @@
 import NavBar from "./components/NavBar";
-import Index from "./components/Product/Index";
+import { Outlet } from "react-router-dom";
 export default function App() {
   return (
     <>
       <NavBar />
-      <Index />
+      <Outlet />
     </>
   );
 }
