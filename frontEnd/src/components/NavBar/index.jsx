@@ -19,7 +19,7 @@ function classNames(...classes) {
 
 export default function NavBar() {
   return (
-    <Disclosure as="nav" className="bg-white border-b h-16 shadow-sm">
+    <Disclosure as="nav" className="bg-white border-b h-16 shadow-sm mb-6">
       {({ open }) => (
         <>
           <div className={`flex justify-between ${style.container}`}>

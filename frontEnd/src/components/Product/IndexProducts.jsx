@@ -23,7 +23,7 @@ export default function Index({ length }) {
   return (
     <>
       <Toastify />
-      <div className={`${styles.container} grid grid-cols-12 gap-3 mt-5`}>
+      <div className={`${styles.container} grid grid-cols-12 gap-3`}>
         {products
           ? products.map((product) => (
               <CardProduct key={product.id} data={product} />
