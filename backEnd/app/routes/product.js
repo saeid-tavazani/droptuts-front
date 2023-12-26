@@ -28,6 +28,7 @@ router.post(
       customMadeValidator("discount").notEmpty(),
       customMadeValidator("link").notEmpty(),
       customMadeValidator("pass").notEmpty(),
+      customMadeValidator("volume").notEmpty(),
     ]),
   ],
   newProduct

@@ -12,8 +12,17 @@ const {
 } = require("../services/ResponseStatusCodes");
 exports.newProduct = (req, res, next) => {
   try {
-    const { title, description, discount, pass, link, price, poster, status } =
-      req.body;
+    const {
+      title,
+      description,
+      discount,
+      pass,
+      link,
+      price,
+      poster,
+      status,
+      volume,
+    } = req.body;
     addProduct([
       title,
       description,
@@ -23,6 +32,7 @@ exports.newProduct = (req, res, next) => {
       price,
       discount,
       poster,
+      volume,
     ])
       .then((user) => {
         if (user.affectedRows) {

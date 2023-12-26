@@ -12,14 +12,11 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { HiOutlineServer } from "react-icons/hi2";
 import { BsCash } from "react-icons/bs";
 import { RiLockPasswordLine } from "react-icons/ri";
+import Comment from "../components/Comment/Comment.jsx";
 export default function SingleProduct() {
   const products = useSelector((state) => state.products.value);
   let { id } = useParams();
   const [activeProduct, setProduct] = useState(null);
-  const dispatch = useDispatch();
-  console.log("====================================");
-  console.log(activeProduct);
-  console.log("====================================");
   useEffect(() => {
     if (products) {
       setProduct(products.find((element) => element.id == id));
@@ -34,23 +31,21 @@ export default function SingleProduct() {
     }
   }, []);
 
-  // const handlerText = (htmlContent) => {
-  //   const sanitizedHtml = DOMPurify.sanitize(htmlContent);
-  //   return parse(sanitizedHtml);
-  // };
-
   return activeProduct ? (
     <>
       <Toastify />
       <div className={`${styles.container} grid grid-cols-12 gap-4`}>
         <div className="col-span-9 flex flex-col gap-4">
-          <img
-            className="w-full rounded-lg"
-            src={activeProduct.poster}
-            alt={activeProduct.title}
-          />
+          <div className="w-full rounded-lg overflow-hidden max-h-[500px]">
+            <img
+              className="object-cover w-full h-full"
+              src={activeProduct.poster}
+              alt={activeProduct.title}
+            />
+          </div>
           <h1 className="font-bold">{activeProduct.title}</h1>
           <p>{parse(activeProduct.description)}</p>
+          <Comment />
         </div>
         <div className="col-span-3 border rounded-lg p-4 h-fit">
           <ul className="flex flex-col gap-y-3 text-sm">

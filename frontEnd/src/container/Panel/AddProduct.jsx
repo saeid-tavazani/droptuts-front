@@ -41,6 +41,7 @@ export default function AddProduct() {
     const price = formData.get("price");
     const poster = formData.get("poster");
     const discount = formData.get("discount");
+    const volume = formData.get("volume");
     const description = editorRef.current.getContent();
     axios
       .post(
@@ -54,6 +55,7 @@ export default function AddProduct() {
           discount,
           link,
           pass: selectedValue,
+          volume,
         },
         { headers: { authorization: token } }
       )
@@ -90,6 +92,7 @@ export default function AddProduct() {
         <Input type="text" label="قیمت" name="price" defaultValue={0} />
         <Input type="text" label="تخفیف" name="discount" defaultValue={0} />
         <Input type="text" label="لینک تصویر محصول" name="poster" />
+        <Input type="number" label="حجم فایل" name="volume" />
         <Button type="submit" className="w-fit">
           ثبت
         </Button>
