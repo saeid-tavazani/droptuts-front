@@ -68,7 +68,7 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="w-full rounded-xl p-5 bg-box shadow-sm border flex flex-col gap-7">
+    <div className="w-full rounded-xl p-5 bg-box shadow-sm border border-gray-400 flex flex-col gap-7">
       <form onSubmit={addProductHandler} className="flex gap-3 flex-wrap">
         <Input className="w-full" type="text" label="عنوان" name="title" />
 

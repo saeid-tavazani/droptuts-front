@@ -20,7 +20,7 @@ export default function AddComment() {
   };
 
   return (
-    <div className="w-full mt-8">
+    <div className="w-full">
       <Toastify />
       <h2 className="font-bold">افزودن نظر</h2>
       <form onSubmit={addComment} className="flex flex-col gap-y-3 mt-3">

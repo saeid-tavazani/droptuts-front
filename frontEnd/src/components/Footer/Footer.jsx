@@ -18,7 +18,7 @@ const LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t mt-6 shadow-sm bg-box">
+    <footer className="w-full border-t border-gray-400 mt-6 shadow-sm bg-box">
       <div
         className={`${styles.container} py-10 flex items-center gap-4 justify-between`}
       >

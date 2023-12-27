@@ -45,7 +45,7 @@ export default function ProductsPanel() {
     }
   }, [token]);
   return (
-    <div className="w-full rounded-xl p-5 bg-box shadow-sm border flex flex-col gap-7">
+    <div className="w-full rounded-xl p-5 bg-box shadow-sm border border-gray-400 flex flex-col gap-7">
       <div className="flex items-center justify-between gap-2">
         <h1 className="whitespace-nowrap font-bold">محصولات شما</h1>
         <Button onClick={() => navigate("/panel/addproduct")} className="w-fit">

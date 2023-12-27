@@ -8,7 +8,10 @@ export default function HederPanel({ open, setOpen }) {
     return classes.filter(Boolean).join(" ");
   }
   return (
-    <Disclosure as="nav" className="bg-box border-b h-16 shadow-sm ">
+    <Disclosure
+      as="nav"
+      className="bg-box border-gray-400 border-b h-16 shadow-sm "
+    >
       <div
         className={`flex items-center h-full justify-between lg:justify-end  ${style.container}`}
       >

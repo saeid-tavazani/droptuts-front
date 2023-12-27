@@ -44,12 +44,16 @@ export default function SingleProduct() {
               alt={activeProduct.title}
             />
           </div>
-          <h1 className="font-bold">{activeProduct.title}</h1>
-          <p>{parse(activeProduct.description)}</p>
-          <AddComment />
-          <ListComment />
+          <div className="bg-box rounded-lg border p-5 border-gray-400">
+            <h1 className="font-bold mb-6">{activeProduct.title}</h1>
+            <p>{parse(activeProduct.description)}</p>
+          </div>
+          <div className=" bg-box rounded-lg border p-5 border-gray-400">
+            <AddComment />
+            <ListComment />
+          </div>
         </div>
-        <div className="col-span-3 border rounded-lg p-4 h-fit">
+        <div className="col-span-3 border border-gray-400 rounded-lg p-4 h-fit">
           <ul className="flex flex-col gap-y-3 text-sm">
             <li className="text-sm flex items-center">
               <BsCash /> قیمت :
