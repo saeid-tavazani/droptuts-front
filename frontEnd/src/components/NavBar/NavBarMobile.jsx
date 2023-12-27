@@ -3,7 +3,7 @@ import styles from "../../assets/styles/style";
 
 export default function NavBarMobile({ navigation, classNames }) {
   return (
-    <Disclosure.Panel className="sm:hidden w-full border-b bg-white py-4">
+    <Disclosure.Panel className="sm:hidden w-full border-b bg-box py-4">
       <div className={`${styles.container} flex flex-col gap-3`}>
         {navigation.map((item) => (
           <Disclosure.Button

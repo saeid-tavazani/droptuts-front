@@ -37,7 +37,7 @@ export default function AsidePanel({ status, user }) {
     <motion.aside
       initial={status ? { width: "0px" } : { width: "20rem" }}
       animate={status ? { width: "20rem" } : { width: "0px" }}
-      className="animate-sidebar-navigation overflow-hidden duration-300 transition-width h-full bg-white shadow-sm border-l hidden lg:flex lg:relative"
+      className="animate-sidebar-navigation overflow-hidden duration-300 transition-width h-full bg-box shadow-sm border-l hidden lg:flex lg:relative"
     >
       <nav className="py-8 px-5 w-full h-full flex flex-col space-y-4">
         {/* <Logo /> */}

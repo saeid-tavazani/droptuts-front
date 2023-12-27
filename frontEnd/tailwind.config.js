@@ -12,6 +12,10 @@ module.exports = withMT({
         width: "width",
       },
     },
+    colors: {
+      box: "#ffffff",
+      body: "#F7F8F9",
+    },
   },
   plugins: [],
 });

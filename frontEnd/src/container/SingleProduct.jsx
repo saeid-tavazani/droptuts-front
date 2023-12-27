@@ -12,7 +12,8 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { HiOutlineServer } from "react-icons/hi2";
 import { BsCash } from "react-icons/bs";
 import { RiLockPasswordLine } from "react-icons/ri";
-import Comment from "../components/Comment/Comment.jsx";
+import AddComment from "../components/Comment/AddComment";
+import ListComment from "../components/Comment/ListComment.jsx";
 export default function SingleProduct() {
   const products = useSelector((state) => state.products.value);
   let { id } = useParams();
@@ -36,7 +37,7 @@ export default function SingleProduct() {
       <Toastify />
       <div className={`${styles.container} grid grid-cols-12 gap-4`}>
         <div className="col-span-9 flex flex-col gap-4">
-          <div className="w-full rounded-lg overflow-hidden max-h-[500px]">
+          <div className="w-full rounded-lg overflow-hidden max-h-[550px]">
             <img
               className="object-cover w-full h-full"
               src={activeProduct.poster}
@@ -45,20 +46,21 @@ export default function SingleProduct() {
           </div>
           <h1 className="font-bold">{activeProduct.title}</h1>
           <p>{parse(activeProduct.description)}</p>
-          <Comment />
+          <AddComment />
+          <ListComment />
         </div>
         <div className="col-span-3 border rounded-lg p-4 h-fit">
           <ul className="flex flex-col gap-y-3 text-sm">
             <li className="text-sm flex items-center">
-              <BsCash /> قیمت :{" "}
+              <BsCash /> قیمت :
               {activeProduct.price == 0 ? "رایگان" : ctiveProduct.price}
             </li>
             <li className="text-sm flex items-center">
               <HiOutlineServer size={20} />
-              حجم فایل : 5.8GB
+              حجم فایل : {activeProduct.volume} GB
             </li>
             <li className="text-sm flex items-center">
-              <MdOutlineDateRange size={20} /> تاریخ بروز رسانی :{" "}
+              <MdOutlineDateRange size={20} /> تاریخ بروز رسانی :
               {activeProduct.update_at
                 ? activeProduct.update_at
                 : "بدون بروز رسانی"}

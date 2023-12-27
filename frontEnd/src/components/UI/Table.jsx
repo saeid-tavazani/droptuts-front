@@ -22,7 +22,7 @@ export default function Table({ titles, data, keys }) {
   };
   return (
     <table className="min-w-full divide-y divide-gray-200">
-      <thead className="bg-gray-50 h-14">
+      <thead className="bg-body h-14">
         <tr>
           {titles.map((item, index) => (
             <th key={index} className={style}>
@@ -33,10 +33,7 @@ export default function Table({ titles, data, keys }) {
       </thead>
       <tbody>
         {data.map((item, index) => (
-          <tr
-            key={item.id}
-            className={(index + 1) % 2 == 0 ? "bg-gray-50" : ""}
-          >
+          <tr key={item.id} className={(index + 1) % 2 == 0 ? "bg-body" : ""}>
             <td className={style}>{index + 1}</td>
             {keys.map((keysValues, index2) => (
               <td key={index + "" + item.id + index2} className={style}>
